@@ -176,7 +176,8 @@ if __name__ == "__main__":
         synthesized_rows.append({
             "question": orig_q,
             "category": cat,
-            "variation": orig_q
+            "variation": orig_q,
+            "variation_type": "default"
         })
         
         # Create variations for each context
@@ -185,7 +186,8 @@ if __name__ == "__main__":
             synthesized_rows.append({
                 "question": orig_q,
                 "category": cat,
-                "variation": variant_text
+                "variation": variant_text,
+                "variation_type": target
             })
 
     # 4. save them in folder data/synthesized
@@ -193,7 +195,7 @@ if __name__ == "__main__":
     output_path = "synthesized/variations.csv"
     try:
         with open(output_path, "w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=["question", "category", "variation"])
+            writer = csv.DictWriter(f, fieldnames=["question", "category", "variation", "variation_type"])
             writer.writeheader()
             writer.writerows(synthesized_rows)
         print(f"Successfully saved {len(synthesized_rows)} rows to {output_path}")
