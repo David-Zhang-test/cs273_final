@@ -1,0 +1,3 @@
+data/.env
+data/raw
+data/refine_variations.py
