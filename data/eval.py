@@ -1,13 +1,13 @@
 """
 Usage Examples:
-1. Evaluate using OpenRouter (default):
-   python data/eval.py --model "meta-llama/llama-3.1-8b-instruct" --num_samples 10
+1. Evaluate using direct OpenAI API (default):
+    python data/eval.py --model "gpt-4o-mini" --num_samples 10
 
 2. Evaluate using a local OpenAI-compatible API:
    python data/eval.py --local --model "your-local-model" --num_samples 5
 
 3. Use a specific judge model:
-   python data/eval.py --judge_model "openai/gpt-4o" --num_samples 100
+    python data/eval.py --judge_model "gpt-4o" --num_samples 100
 """
 
 import argparse
@@ -26,7 +26,7 @@ def get_api_key():
                 for line in f:
                     if "=" in line:
                         k, v = line.strip().split("=", 1)
-                        if k.strip() == "OPENROUTER_API_KEY":
+                        if k.strip() == "OPENAI_API_KEY":
                             api_key = v.strip().strip('"').strip("'")
             
             # Fallback: if file doesn't contain '=', assume it's the key itself
@@ -39,7 +39,7 @@ def get_api_key():
             print(f"Error reading .env: {e}")
     
     if not api_key:
-        api_key = os.getenv("OPENROUTER_API_KEY")
+        api_key = os.getenv("OPENAI_API_KEY")
     return api_key
 
 if __name__ == '__main__':
@@ -49,31 +49,28 @@ if __name__ == '__main__':
 
     # 2. set model and judge model, this should be input from command line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="meta-llama/llama-3.1-8b-instruct")
-    parser.add_argument("--judge_model", type=str, default="openai/gpt-4o-mini")
-    parser.add_argument("--openrouter", action="store_true", default=True)
+    parser.add_argument("--model", type=str, default="gpt-4o-mini")
+    parser.add_argument("--judge_model", type=str, default="gpt-4o-mini")
     parser.add_argument("--local", action="store_true")
     parser.add_argument("--num_samples", type=int, default=None, help="Number of samples to evaluate (default: all)")
     args = parser.parse_args()
     
     model = args.model
     judge_model = args.judge_model
-    openrouter = args.openrouter
     local = args.local
 
-    # if openrouter is true or local is false, use openrouter api, otherwise use local openai-compatible api
-    if openrouter or not local:
+    # use direct OpenAI API unless local mode is requested
+    if not local:
         api_key = get_api_key()
         if not api_key:
-            print("Error: OPENROUTER_API_KEY is not set")
+            print("Error: OPENAI_API_KEY is not set")
             exit(1)
-        base_url = "https://openrouter.ai/api/v1"
+        client = openai.OpenAI(api_key=api_key)
     else:
         # use local openai-compatible api
         api_key = "ollama" # placeholder for local
         base_url = "http://localhost:11434/v1"
-    
-    client = openai.OpenAI(api_key=api_key, base_url=base_url)
+        client = openai.OpenAI(api_key=api_key, base_url=base_url)
     
     import csv
 

@@ -11,7 +11,7 @@ def build_arg_parser():
     parser.add_argument(
         "--response_csv",
         type=str,
-        default="saved_results/judge/variations_response.csv",
+        default="saved_results/response/variations_response.csv",
     )
     parser.add_argument(
         "--judged_csv",
@@ -24,7 +24,7 @@ def build_arg_parser():
         type=str,
         default="meta-llama/Meta-Llama-3.1-8B-Instruct",
     )
-    parser.add_argument("--judge_model", type=str, default="openai/gpt-4o-mini")
+    parser.add_argument("--judge_model", type=str, default="gpt-4o-mini")
     parser.add_argument("--device", type=str, default="cuda")
     parser.add_argument("--max_new_tokens", type=int, default=150)
     parser.add_argument("--num_samples", type=int, default=None)

@@ -1,13 +1,12 @@
 import csv
-import json
 import os
 
 import openai
 from tqdm import tqdm
 
 
-def get_openrouter_api_key():
-    """Get OPENROUTER_API_KEY from .env or environment variables."""
+def get_openai_api_key():
+    """Get OPENAI_API_KEY from .env or environment variables."""
     api_key = None
     if os.path.exists(".env"):
         try:
@@ -15,7 +14,7 @@ def get_openrouter_api_key():
                 for line in file_obj:
                     if "=" in line:
                         key, value = line.strip().split("=", 1)
-                        if key.strip() == "OPENROUTER_API_KEY":
+                        if key.strip() == "OPENAI_API_KEY":
                             api_key = value.strip().strip('"').strip("'")
 
             if not api_key:
@@ -27,24 +26,23 @@ def get_openrouter_api_key():
             print(f"Error reading .env: {exc}")
 
     if not api_key:
-        api_key = os.getenv("OPENROUTER_API_KEY")
+        api_key = os.getenv("OPENAI_API_KEY")
     return api_key
 
 
 class ResponseJudger:
-    def __init__(self, judge_model="openai/gpt-4o-mini", use_local=False):
+    def __init__(self, judge_model="gpt-4o-mini", use_local=False):
         self.judge_model = judge_model
 
         if use_local:
             api_key = "ollama"
             base_url = "http://localhost:11434/v1"
+            self.client = openai.OpenAI(api_key=api_key, base_url=base_url)
         else:
-            api_key = get_openrouter_api_key()
+            api_key = get_openai_api_key()
             if not api_key:
-                raise ValueError("OPENROUTER_API_KEY is missing.")
-            base_url = "https://openrouter.ai/api/v1"
-
-        self.client = openai.OpenAI(api_key=api_key, base_url=base_url)
+                raise ValueError("OPENAI_API_KEY is missing.")
+            self.client = openai.OpenAI(api_key=api_key)
 
     def judge_response(self, prompt_text, response_text, variation_type="unknown"):
         """Judge one response and return JSON-string output."""

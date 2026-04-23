@@ -8,29 +8,29 @@ import random
 if __name__ == "__main__":
     
     # Get API Key from .env manually since dotenv might be missing
-    openrouter_key = None
+    openai_key = None
     if os.path.exists(".env"):
         try:
             with open(".env", "r") as f:
                 for line in f:
                     if "=" in line:
                         k, v = line.strip().split("=", 1)
-                        if k.strip() == "OPENROUTER_API_KEY":
-                            openrouter_key = v.strip().strip('"').strip("'")
+                        if k.strip() == "OPENAI_API_KEY":
+                            openai_key = v.strip().strip('"').strip("'")
             
             # Fallback: if file doesn't contain '=', assume it's the key itself
-            if not openrouter_key:
+            if not openai_key:
                 with open(".env", "r") as f:
                     content = f.read().strip()
                     if content and "=" not in content:
-                        openrouter_key = content
+                        openai_key = content
         except Exception as e:
             print(f"Error reading .env: {e}")
     
-    if not openrouter_key:
-        openrouter_key = os.getenv("OPENROUTER_API_KEY")
+    if not openai_key:
+        openai_key = os.getenv("OPENAI_API_KEY")
 
-    client = openai.OpenAI(api_key=openrouter_key, base_url="https://openrouter.ai/api/v1")
+    client = openai.OpenAI(api_key=openai_key)
 
     # Prepare raw datasets
     # Optimization: Use pure Python loading to avoid NumPy/Pandas compatibility issues in this environment
@@ -153,7 +153,7 @@ if __name__ == "__main__":
         
         try:
             response = client.chat.completions.create(
-                model="openai/gpt-4o-mini",
+                model="gpt-4o-mini",
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
