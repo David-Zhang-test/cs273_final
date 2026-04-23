@@ -77,7 +77,8 @@ if __name__ == "__main__":
 
     data_dict = {
         "actionable_harm": {
-            "donotanswer": load_optimized("raw/donotanswer.parquet"),
+            # "donotanswer": load_optimized("raw/donotanswer.parquet"),
+            "advbench": load_optimized("raw/advbench.parquet"),
         },
         "subjective_value": {
             "opinionqa": load_optimized("raw/opinionqa.test.jsonl"),
