@@ -5,3 +5,6 @@ data/refine_variations.py
 .env
 
 *.pyc
+
+saved_states/
+saved_results/
