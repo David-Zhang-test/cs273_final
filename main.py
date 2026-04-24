@@ -22,7 +22,7 @@ def build_arg_parser():
     parser.add_argument(
         "--inference_model",
         type=str,
-        default="meta-llama/Meta-Llama-3.1-8B-Instruct",
+        default="meta-llama/Llama-3.1-8B-Instruct",
     )
     parser.add_argument("--judge_model", type=str, default="gpt-4o-mini")
     parser.add_argument("--device", type=str, default="cuda")
@@ -38,8 +38,29 @@ def main():
     os.makedirs("saved_results/judge", exist_ok=True)
     os.makedirs(args.states_dir, exist_ok=True)
 
+    # read HF key
+    hf_key = None
+    if os.path.exists(".env"):
+        try:
+            with open(".env", "r", encoding="utf-8") as file_obj:
+                for line in file_obj:
+                    if "=" in line:
+                        key, value = line.strip().split("=", 1)
+                        if key.strip() == "HF_TOKEN":
+                            hf_key = value.strip().strip('"').strip("'")
+
+            if not hf_key:
+                with open(".env", "r", encoding="utf-8") as file_obj:
+                    content = file_obj.read().strip()
+                    if content and "=" not in content:
+                        hf_key = content
+        except Exception as exc:
+            print(f"Error reading .env: {exc}")
+
+    if not hf_key:
+        hf_key = os.getenv("HF_TOKEN")
     print("--- 1. Inference on Dataset ---")
-    runner = ModelRunner(model_name=args.inference_model, device=args.device)
+    runner = ModelRunner(HF_TOKEN=hf_key, model_name=args.inference_model, device=args.device)
     runner.infer_dataset(
         input_csv_path=args.input_csv,
         response_output_csv=args.response_csv,
@@ -48,17 +69,17 @@ def main():
         num_samples=args.num_samples,
     )
 
-    print("\n--- 2. Judge Model Responses ---")
-    judger = ResponseJudger(judge_model=args.judge_model, use_local=args.local)
-    judger.judge_csv(
-        response_csv_path=args.response_csv,
-        judged_output_path=args.judged_csv,
-    )
+    # print("\n--- 2. Judge Model Responses ---")
+    # judger = ResponseJudger(judge_model=args.judge_model, use_local=args.local)
+    # judger.judge_csv(
+    #     response_csv_path=args.response_csv,
+    #     judged_output_path=args.judged_csv,
+    # )
 
-    print("\nPipeline complete.")
-    print(f"Responses: {args.response_csv}")
-    print(f"Judged outputs: {args.judged_csv}")
-    print(f"Saved states: {args.states_dir}")
+    # print("\nPipeline complete.")
+    # print(f"Responses: {args.response_csv}")
+    # print(f"Judged outputs: {args.judged_csv}")
+    # print(f"Saved states: {args.states_dir}")
 
 
 if __name__ == "__main__":
