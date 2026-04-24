@@ -29,7 +29,7 @@ def build_arg_parser():
     parser.add_argument(
         "--model_dtype",
         type=str,
-        default="float16",
+        default="bfloat16",
         choices=["float16", "bfloat16", "float32"],
     )
     parser.add_argument("--max_new_tokens", type=int, default=150)

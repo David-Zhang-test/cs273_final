@@ -12,6 +12,14 @@ def resolve_torch_dtype(dtype_name):
         return torch.bfloat16
     return torch.float32
 
+
+def resolve_fallback_dtype(current_dtype_name):
+    if current_dtype_name == "float16":
+        return "bfloat16"
+    if current_dtype_name == "bfloat16":
+        return "float32"
+    return None
+
 class ModelRunner:
     def __init__(
         self,
@@ -31,12 +39,28 @@ class ModelRunner:
         HF_TOKEN = os.getenv("HF_TOKEN")
         assert HF_TOKEN, "HF_TOKEN environment variable is required to load Hugging Face models in this environment."
 
-        dtype = resolve_torch_dtype(model_dtype)
-        self.model = HookedTransformer.from_pretrained(
-            model_name,
+        self.model = self._load_model(dtype_name=self.model_dtype)
+
+    def _load_model(self, dtype_name):
+        dtype = resolve_torch_dtype(dtype_name)
+        return HookedTransformer.from_pretrained(
+            self.model_name,
             device=self.device,
             dtype=dtype,
         )
+
+    def _reload_with_fallback_dtype(self):
+        fallback = resolve_fallback_dtype(self.model_dtype)
+        if fallback is None:
+            return False
+
+        print(
+            f"Encountered dtype mismatch with {self.model_dtype}. "
+            f"Reloading model with {fallback}..."
+        )
+        self.model_dtype = fallback
+        self.model = self._load_model(dtype_name=self.model_dtype)
+        return True
 
     def get_activations_and_response(self, prompt_text, target_layers="all", max_new_tokens=150):
         """
@@ -72,7 +96,12 @@ class ModelRunner:
             )
             
         # Generate the actual text response
-        generated_tokens = self.model.generate(tokens, max_new_tokens=max_new_tokens, temperature=0.0)
+        generated_tokens = self.model.generate(
+            tokens,
+            max_new_tokens=max_new_tokens,
+            temperature=0.0,
+            verbose=False,
+        )
         response_text = self.model.tokenizer.decode(generated_tokens[0][tokens.shape[1]:])
         
         # Extract the activation vector for the strict final token of the prompt
@@ -97,7 +126,12 @@ class ModelRunner:
         with torch.no_grad():
             _, cache = self.model.run_with_cache(tokens, names_filter=hook_filter)
 
-        generated_tokens = self.model.generate(tokens, max_new_tokens=max_new_tokens, temperature=0.0)
+        generated_tokens = self.model.generate(
+            tokens,
+            max_new_tokens=max_new_tokens,
+            temperature=0.0,
+            verbose=False,
+        )
         response_text = self.model.tokenizer.decode(generated_tokens[0][tokens.shape[1]:])
 
         full_residual_cache = {}
@@ -141,6 +175,7 @@ class ModelRunner:
         print(f"Running inference on {len(rows)} prompts from {input_csv_path}...")
         for idx, row in enumerate(tqdm(rows)):
             prompt = row.get("variation", row.get("question", ""))
+            state_file = os.path.join(states_output_dir, f"prompt_{idx:06d}.pt")
 
             try:
                 response_text, full_residual_cache, last_token_cache, prompt_tokens = self.get_full_residual_cache_and_response(
@@ -160,11 +195,38 @@ class ModelRunner:
                     "residual_stream_full": full_residual_cache,
                     "residual_stream_last_token": last_token_cache,
                 }
-
-                state_file = os.path.join(states_output_dir, f"prompt_{idx:06d}.pt")
                 torch.save(state_payload, state_file)
                 row["state_file"] = state_file
             except Exception as exc:
+                # Retry once if this is a known precision mismatch.
+                if (
+                    "expected scalar type Float but found Half" in str(exc)
+                    and self.model_dtype in {"float16", "bfloat16"}
+                    and self._reload_with_fallback_dtype()
+                ):
+                    try:
+                        response_text, full_residual_cache, last_token_cache, prompt_tokens = self.get_full_residual_cache_and_response(
+                            prompt_text=prompt,
+                            max_new_tokens=max_new_tokens,
+                        )
+                        row["response"] = response_text
+                        state_payload = {
+                            "prompt_id": idx,
+                            "question": row.get("question", ""),
+                            "category": row.get("category", ""),
+                            "variation_type": row.get("variation_type", ""),
+                            "variation": prompt,
+                            "response": response_text,
+                            "prompt_tokens": prompt_tokens,
+                            "residual_stream_full": full_residual_cache,
+                            "residual_stream_last_token": last_token_cache,
+                        }
+                        torch.save(state_payload, state_file)
+                        row["state_file"] = state_file
+                        continue
+                    except Exception as retry_exc:
+                        exc = retry_exc
+
                 row["response"] = f"ERROR: {exc}"
                 row["state_file"] = ""
 
