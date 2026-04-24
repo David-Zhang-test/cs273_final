@@ -5,7 +5,7 @@ from transformer_lens import HookedTransformer
 from tqdm import tqdm
 
 class ModelRunner:
-    def __init__(self, HF_TOKEN, model_name="meta-llama/Meta-Llama-3.1-8B-Instruct", device="cuda"):
+    def __init__(self, model_name="meta-llama/Meta-Llama-3.1-8B-Instruct", device="cuda"):
         """
         Initializes the model runner.
         Supported models include:
@@ -14,7 +14,10 @@ class ModelRunner:
         """
         self.model_name = model_name
         self.device = device
-        self.model = HookedTransformer.from_pretrained(model_name, token=HF_TOKEN, device=self.device)
+        HF_TOKEN = os.getenv("HF_TOKEN")
+        assert HF_TOKEN, "HF_TOKEN environment variable is required to load Hugging Face models in this environment."
+
+        self.model = HookedTransformer.from_pretrained(model_name, device=self.device)
 
     def get_activations_and_response(self, prompt_text, target_layers="all", max_new_tokens=150):
         """

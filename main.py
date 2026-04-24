@@ -38,29 +38,8 @@ def main():
     os.makedirs("saved_results/judge", exist_ok=True)
     os.makedirs(args.states_dir, exist_ok=True)
 
-    # read HF key
-    hf_key = None
-    if os.path.exists(".env"):
-        try:
-            with open(".env", "r", encoding="utf-8") as file_obj:
-                for line in file_obj:
-                    if "=" in line:
-                        key, value = line.strip().split("=", 1)
-                        if key.strip() == "HF_TOKEN":
-                            hf_key = value.strip().strip('"').strip("'")
-
-            if not hf_key:
-                with open(".env", "r", encoding="utf-8") as file_obj:
-                    content = file_obj.read().strip()
-                    if content and "=" not in content:
-                        hf_key = content
-        except Exception as exc:
-            print(f"Error reading .env: {exc}")
-
-    if not hf_key:
-        hf_key = os.getenv("HF_TOKEN")
     print("--- 1. Inference on Dataset ---")
-    runner = ModelRunner(HF_TOKEN=hf_key, model_name=args.inference_model, device=args.device)
+    runner = ModelRunner(model_name=args.inference_model, device=args.device)
     runner.infer_dataset(
         input_csv_path=args.input_csv,
         response_output_csv=args.response_csv,
