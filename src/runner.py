@@ -4,8 +4,21 @@ import os
 from transformer_lens import HookedTransformer
 from tqdm import tqdm
 
+
+def resolve_torch_dtype(dtype_name):
+    if dtype_name == "float16":
+        return torch.float16
+    if dtype_name == "bfloat16":
+        return torch.bfloat16
+    return torch.float32
+
 class ModelRunner:
-    def __init__(self, model_name="meta-llama/Meta-Llama-3.1-8B-Instruct", device="cuda"):
+    def __init__(
+        self,
+        model_name="meta-llama/Meta-Llama-3.1-8B-Instruct",
+        device="cuda",
+        model_dtype="float16",
+    ):
         """
         Initializes the model runner.
         Supported models include:
@@ -14,10 +27,16 @@ class ModelRunner:
         """
         self.model_name = model_name
         self.device = device
+        self.model_dtype = model_dtype
         HF_TOKEN = os.getenv("HF_TOKEN")
         assert HF_TOKEN, "HF_TOKEN environment variable is required to load Hugging Face models in this environment."
 
-        self.model = HookedTransformer.from_pretrained(model_name, device=self.device)
+        dtype = resolve_torch_dtype(model_dtype)
+        self.model = HookedTransformer.from_pretrained(
+            model_name,
+            device=self.device,
+            dtype=dtype,
+        )
 
     def get_activations_and_response(self, prompt_text, target_layers="all", max_new_tokens=150):
         """

@@ -26,6 +26,12 @@ def build_arg_parser():
     )
     parser.add_argument("--judge_model", type=str, default="gpt-4o-mini")
     parser.add_argument("--device", type=str, default="cuda")
+    parser.add_argument(
+        "--model_dtype",
+        type=str,
+        default="float16",
+        choices=["float16", "bfloat16", "float32"],
+    )
     parser.add_argument("--max_new_tokens", type=int, default=150)
     parser.add_argument("--num_samples", type=int, default=None)
     parser.add_argument("--local", action="store_true", help="Use local OpenAI-compatible endpoint")
@@ -39,7 +45,11 @@ def main():
     os.makedirs(args.states_dir, exist_ok=True)
 
     print("--- 1. Inference on Dataset ---")
-    runner = ModelRunner(model_name=args.inference_model, device=args.device)
+    runner = ModelRunner(
+        model_name=args.inference_model,
+        device=args.device,
+        model_dtype=args.model_dtype,
+    )
     runner.infer_dataset(
         input_csv_path=args.input_csv,
         response_output_csv=args.response_csv,
