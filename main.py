@@ -35,6 +35,7 @@ def build_arg_parser():
     parser.add_argument("--max_new_tokens", type=int, default=150)
     parser.add_argument("--num_samples", type=int, default=None)
     parser.add_argument("--local", action="store_true", help="Use local OpenAI-compatible endpoint")
+    parser.add_argument("--batch", action="store_true", help="Use OpenAI Batch API for judging (50% cheaper, ~24h turnaround)")
     return parser
 
 
@@ -58,17 +59,26 @@ def main():
         num_samples=args.num_samples,
     )
 
-    # print("\n--- 2. Judge Model Responses ---")
-    # judger = ResponseJudger(judge_model=args.judge_model, use_local=args.local)
-    # judger.judge_csv(
-    #     response_csv_path=args.response_csv,
-    #     judged_output_path=args.judged_csv,
-    # )
+    print("\n--- 2. Judge Model Responses ---")
+    judger = ResponseJudger(judge_model=args.judge_model, use_local=args.local)
+    
+    if args.batch:
+        print("Using OpenAI Batch API (50% cheaper, ~24h completion)...")
+        judger.judge_csv_batch(
+            response_csv_path=args.response_csv,
+            judged_output_path=args.judged_csv,
+        )
+    else:
+        print("Using synchronous API (higher cost, immediate results)...")
+        judger.judge_csv(
+            response_csv_path=args.response_csv,
+            judged_output_path=args.judged_csv,
+        )
 
-    # print("\nPipeline complete.")
-    # print(f"Responses: {args.response_csv}")
-    # print(f"Judged outputs: {args.judged_csv}")
-    # print(f"Saved states: {args.states_dir}")
+    print("\nPipeline complete.")
+    print(f"Responses: {args.response_csv}")
+    print(f"Judged outputs: {args.judged_csv}")
+    print(f"Saved states: {args.states_dir}")
 
 
 if __name__ == "__main__":

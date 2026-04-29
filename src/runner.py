@@ -1,6 +1,7 @@
 import torch
 import csv
 import os
+import gc
 from transformer_lens import HookedTransformer
 from tqdm import tqdm
 
@@ -58,6 +59,15 @@ class ModelRunner:
             f"Encountered dtype mismatch with {self.model_dtype}. "
             f"Reloading model with {fallback}..."
         )
+        # Release previous weights before reloading in a different precision.
+        try:
+            del self.model
+        except Exception:
+            pass
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
         self.model_dtype = fallback
         self.model = self._load_model(dtype_name=self.model_dtype)
         return True
@@ -200,7 +210,11 @@ class ModelRunner:
             except Exception as exc:
                 # Retry once if this is a known precision mismatch.
                 if (
-                    "expected scalar type Float but found Half" in str(exc)
+                    (
+                        "expected scalar type Float but found Half" in str(exc)
+                        or "expected scalar type Float but found BFloat16" in str(exc)
+                        or "expected scalar type Half but found BFloat16" in str(exc)
+                    )
                     and self.model_dtype in {"float16", "bfloat16"}
                     and self._reload_with_fallback_dtype()
                 ):
