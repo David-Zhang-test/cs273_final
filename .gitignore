@@ -6,3 +6,4 @@ data/refine_variations.py
 *.pyc
 
 saved_states/
+saved_results/

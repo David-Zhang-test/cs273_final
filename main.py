@@ -26,6 +26,7 @@ def build_arg_parser():
     )
     parser.add_argument("--judge_model", type=str, default="gpt-4o-mini")
     parser.add_argument("--device", type=str, default="cuda")
+    parser.add_argument("--n_devices", type=int, default=1)
     parser.add_argument(
         "--model_dtype",
         type=str,
@@ -50,6 +51,7 @@ def main():
         model_name=args.inference_model,
         device=args.device,
         model_dtype=args.model_dtype,
+        n_devices=args.n_devices,
     )
     runner.infer_dataset(
         input_csv_path=args.input_csv,
