@@ -23,9 +23,14 @@ except ImportError:  # pragma: no cover - handled at runtime with a clear error 
 
 
 LAYER_HOOK_TEMPLATE = "blocks.{layer}.hook_resid_post"
-DEFAULT_SAE_RELEASE = "andyrdt/saes-llama-3.1-8b-instruct"
+DEFAULT_SAE_RELEASE = "llama-3.1-8b-instruct-andyrdt"
 DEFAULT_TRAINER = "trainer_0"
 LAYER_REGEX = re.compile(r"blocks\.(\d+)\.hook_resid_post")
+# Valid layers in the andyrdt SAE for Llama 3.1 8B Instruct (sparse layers only)
+VALID_LAYERS_BY_RELEASE = {
+    "llama-3.1-8b-instruct-andyrdt": {3, 7, 11, 15, 19, 23, 27},
+    "andyrdt/saes-llama-3.1-8b-instruct": {3, 7, 11, 15, 19, 23, 27},  # alternate repo id
+}
 
 
 @dataclass
@@ -235,6 +240,14 @@ def load_sae_for_layer(release: str, layer: int, trainer: str, device: str):
             "sae_lens is not installed. Install dependencies from requirements.txt first."
         )
 
+    # Check if this layer is valid for the given release
+    valid_layers = VALID_LAYERS_BY_RELEASE.get(release, set())
+    if valid_layers and layer not in valid_layers:
+        raise ValueError(
+            f"Layer {layer} is not available in release '{release}'. "
+            f"Valid layers: {sorted(valid_layers)}"
+        )
+
     candidate_sae_ids = [
         f"resid_post_layer_{layer}/{trainer}",
         f"resid_post_layer_{layer}",
@@ -430,6 +443,16 @@ def run_sweep(
     available_layers = infer_available_layers(first_state)
     if not available_layers:
         raise ValueError("Could not infer any layers from the saved state cache.")
+
+    # Filter available_layers to only those valid for the chosen release
+    valid_layers = VALID_LAYERS_BY_RELEASE.get(release, set())
+    if valid_layers:
+        available_layers = [l for l in available_layers if l in valid_layers]
+        if not available_layers:
+            raise ValueError(
+                f"No valid layers found after filtering to release '{release}'. "
+                f"Valid layers for this release: {sorted(valid_layers)}"
+            )
 
     selected_layers = parse_layer_spec(layer_spec, available_layers)
     if not selected_layers:
