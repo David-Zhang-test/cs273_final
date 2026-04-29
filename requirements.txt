@@ -4,3 +4,4 @@ transformer_lens
 matplotlib
 seaborn
 openai
+sae-lens
