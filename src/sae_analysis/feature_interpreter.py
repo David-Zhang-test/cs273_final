@@ -95,11 +95,18 @@ def load_sae_for_layer(layer: int, release: str, trainer: str, device: str) -> T
         raise ImportError("SAE Lens not installed")
     
     sae_id = f"resid_post_layer_{layer}_{trainer}"
-    logger.info(f"Loading SAE {sae_id}...")
-    sae = SAE.load_from_pretrained(release, sae_id)
-    sae.to(device)
-    sae.eval()
+    logger.info(f"Loading SAE {sae_id} from {release}...")
     
+    # Use the SAE Lens API correctly: load_from_pretrained takes (release, sae_id, device)
+    try:
+        sae = SAE.load_from_pretrained(release, sae_id, device=device)
+    except Exception as e:
+        logger.error(f"Failed to load SAE with args (release={release}, sae_id={sae_id}): {e}")
+        logger.info("Trying alternative loading method...")
+        # Fallback: try with layer parameter
+        sae = SAE.load_from_pretrained(release, layer=layer, device=device)
+    
+    sae.eval()
     return sae_id, sae
 
 
@@ -111,9 +118,17 @@ def get_judge_categories(input_csv: str) -> Tuple[Dict[str, List[int]], Dict[int
     with open(input_csv, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row_idx, row in enumerate(reader):
-            category = row.get("judge_category", "unknown")
+            # Try different column names
+            category = row.get("judge_category") or row.get("category") or row.get("judge_response")
+            if not category:
+                logger.warning(f"Row {row_idx}: no judge_category found, available cols: {list(row.keys())}")
+                category = "unknown"
             category_to_rows[category].append(row_idx)
             row_to_category[row_idx] = category
+    
+    logger.info(f"Found {len(category_to_rows)} judge categories: {list(category_to_rows.keys())[:5]}...")
+    for cat, rows in sorted(category_to_rows.items(), key=lambda x: len(x[1]), reverse=True)[:5]:
+        logger.info(f"  {cat}: {len(rows)} samples")
     
     return dict(category_to_rows), row_to_category
 
