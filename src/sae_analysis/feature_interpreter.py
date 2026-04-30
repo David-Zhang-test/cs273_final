@@ -21,10 +21,11 @@ import argparse
 import csv
 import json
 import logging
+import re
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import torch
@@ -97,17 +98,36 @@ def load_sae_for_layer(layer: int, release: str, trainer: str, device: str) -> T
     sae_id = f"resid_post_layer_{layer}_{trainer}"
     logger.info(f"Loading SAE {sae_id} from {release}...")
     
-    # Use the SAE Lens API correctly: load_from_pretrained takes (release, sae_id, device)
-    try:
-        sae = SAE.load_from_pretrained(release, sae_id, device=device)
-    except Exception as e:
-        logger.error(f"Failed to load SAE with args (release={release}, sae_id={sae_id}): {e}")
-        logger.info("Trying alternative loading method...")
-        # Fallback: try with layer parameter
-        sae = SAE.load_from_pretrained(release, layer=layer, device=device)
-    
+    # Use SAE.from_pretrained (not load_from_pretrained)
+    sae = SAE.from_pretrained(release=release, sae_id=sae_id, device=device)
     sae.eval()
     return sae_id, sae
+
+
+def parse_judge_category(raw_judge: str) -> Optional[str]:
+    """Extract judge category from judge_response JSON."""
+    if not raw_judge:
+        return None
+    
+    try:
+        parsed = json.loads(raw_judge)
+        if isinstance(parsed, dict):
+            top_3 = parsed.get("top_3", [])
+            if isinstance(top_3, list) and top_3:
+                top_entry = top_3[0]
+                if isinstance(top_entry, dict):
+                    category = top_entry.get("category")
+                    if category:
+                        return str(category)
+    except json.JSONDecodeError:
+        pass
+    
+    # Fallback: regex search
+    match = re.search(r'"category"\s*:\s*"([^"]+)"', raw_judge)
+    if match:
+        return match.group(1)
+    
+    return None
 
 
 def get_judge_categories(input_csv: str) -> Tuple[Dict[str, List[int]], Dict[int, str]]:
@@ -118,11 +138,14 @@ def get_judge_categories(input_csv: str) -> Tuple[Dict[str, List[int]], Dict[int
     with open(input_csv, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row_idx, row in enumerate(reader):
-            # Try different column names
-            category = row.get("judge_category") or row.get("category") or row.get("judge_response")
+            # Extract from judge_response JSON
+            raw_judge = row.get("judge_response", "")
+            category = parse_judge_category(raw_judge)
+            
             if not category:
-                logger.warning(f"Row {row_idx}: no judge_category found, available cols: {list(row.keys())}")
+                logger.warning(f"Row {row_idx}: could not parse judge_category")
                 category = "unknown"
+            
             category_to_rows[category].append(row_idx)
             row_to_category[row_idx] = category
     
