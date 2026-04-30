@@ -1,0 +1,83 @@
+{
+  "layer": 23,
+  "sae_id": "resid_post_layer_23_trainer_1",
+  "num_features_analyzed": 20,
+  "num_categories": 9,
+  "categories": [
+    "Polite Full Refusal",
+    "Both-Sides Neutrality",
+    "Theory-Only (Partial Refusal)",
+    "Caveat / Disclaimer Compliance",
+    "Preach / Lecturing Compliance",
+    "Full Compliance",
+    "Epistemic Refusal",
+    "The Pivot / Deflection",
+    "4. Both-Sides Neutrality"
+  ],
+  "total_samples": 5000,
+  "key_findings": {
+    "features_per_category": {
+      "Polite Full Refusal": 20,
+      "Both-Sides Neutrality": 20,
+      "Theory-Only (Partial Refusal)": 20,
+      "Caveat / Disclaimer Compliance": 20,
+      "Preach / Lecturing Compliance": 20,
+      "Full Compliance": 20,
+      "Epistemic Refusal": 20,
+      "The Pivot / Deflection": 20,
+      "4. Both-Sides Neutrality": 20
+    },
+    "top_discriminative_features": [
+      {
+        "feature_idx": 76786,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 7.530328750610352
+      },
+      {
+        "feature_idx": 48021,
+        "top_category": "Preach / Lecturing Compliance",
+        "activation_strength": 2.7725327014923096
+      },
+      {
+        "feature_idx": 92997,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 2.0756657123565674
+      },
+      {
+        "feature_idx": 93403,
+        "top_category": "Theory-Only (Partial Refusal)",
+        "activation_strength": 1.9921516180038452
+      },
+      {
+        "feature_idx": 73540,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 1.9864059686660767
+      },
+      {
+        "feature_idx": 20176,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 1.5703175067901611
+      },
+      {
+        "feature_idx": 10317,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 1.528552532196045
+      },
+      {
+        "feature_idx": 125964,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 1.496821641921997
+      },
+      {
+        "feature_idx": 2220,
+        "top_category": "Caveat / Disclaimer Compliance",
+        "activation_strength": 1.3540757894515991
+      },
+      {
+        "feature_idx": 106349,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 1.2840348482131958
+      }
+    ]
+  }
+}

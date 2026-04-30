@@ -1,0 +1,920 @@
+{
+  "Polite Full Refusal": [
+    {
+      "feature_idx": 123331,
+      "mean_activation": 1.23954176902771,
+      "activation_rate": 0.9082652134423251
+    },
+    {
+      "feature_idx": 29742,
+      "mean_activation": 0.6979548931121826,
+      "activation_rate": 0.6939146230699365
+    },
+    {
+      "feature_idx": 58822,
+      "mean_activation": 0.5479624271392822,
+      "activation_rate": 0.734786557674841
+    },
+    {
+      "feature_idx": 130862,
+      "mean_activation": 0.45832955837249756,
+      "activation_rate": 0.5758401453224341
+    },
+    {
+      "feature_idx": 6368,
+      "mean_activation": 0.4391648769378662,
+      "activation_rate": 0.5994550408719346
+    },
+    {
+      "feature_idx": 44606,
+      "mean_activation": 0.31856265664100647,
+      "activation_rate": 0.5576748410535877
+    },
+    {
+      "feature_idx": 37431,
+      "mean_activation": 0.30994340777397156,
+      "activation_rate": 0.547683923705722
+    },
+    {
+      "feature_idx": 27763,
+      "mean_activation": 0.2764987349510193,
+      "activation_rate": 0.4141689373297003
+    },
+    {
+      "feature_idx": 84702,
+      "mean_activation": 0.24095438420772552,
+      "activation_rate": 0.45322434150772023
+    },
+    {
+      "feature_idx": 25500,
+      "mean_activation": 0.23549650609493256,
+      "activation_rate": 0.3533151680290645
+    },
+    {
+      "feature_idx": 401,
+      "mean_activation": 0.22607897222042084,
+      "activation_rate": 0.3941871026339691
+    },
+    {
+      "feature_idx": 63228,
+      "mean_activation": 0.20670415461063385,
+      "activation_rate": 0.4659400544959128
+    },
+    {
+      "feature_idx": 62579,
+      "mean_activation": 0.1932915449142456,
+      "activation_rate": 0.3823796548592189
+    },
+    {
+      "feature_idx": 81,
+      "mean_activation": 0.18659178912639618,
+      "activation_rate": 0.31244323342415986
+    },
+    {
+      "feature_idx": 102166,
+      "mean_activation": 0.1304476410150528,
+      "activation_rate": 0.2851952770208901
+    },
+    {
+      "feature_idx": 125190,
+      "mean_activation": 0.11158905923366547,
+      "activation_rate": 0.23160762942779292
+    },
+    {
+      "feature_idx": 69334,
+      "mean_activation": 0.09450806677341461,
+      "activation_rate": 0.24250681198910082
+    },
+    {
+      "feature_idx": 44523,
+      "mean_activation": 0.07717184722423553,
+      "activation_rate": 0.14986376021798364
+    },
+    {
+      "feature_idx": 69791,
+      "mean_activation": 0.0765879675745964,
+      "activation_rate": 0.17892824704813806
+    },
+    {
+      "feature_idx": 49824,
+      "mean_activation": 0.05130268633365631,
+      "activation_rate": 0.08265213442325159
+    }
+  ],
+  "Both-Sides Neutrality": [
+    {
+      "feature_idx": 123331,
+      "mean_activation": 1.4056388139724731,
+      "activation_rate": 0.9761766414875073
+    },
+    {
+      "feature_idx": 58822,
+      "mean_activation": 1.1879372596740723,
+      "activation_rate": 0.9593259732713538
+    },
+    {
+      "feature_idx": 27763,
+      "mean_activation": 0.6296999454498291,
+      "activation_rate": 0.8721673445671121
+    },
+    {
+      "feature_idx": 44606,
+      "mean_activation": 0.46079543232917786,
+      "activation_rate": 0.8535735037768739
+    },
+    {
+      "feature_idx": 37431,
+      "mean_activation": 0.45742541551589966,
+      "activation_rate": 0.8123184195235328
+    },
+    {
+      "feature_idx": 84702,
+      "mean_activation": 0.4343149662017822,
+      "activation_rate": 0.7123765252760024
+    },
+    {
+      "feature_idx": 130862,
+      "mean_activation": 0.3836827874183655,
+      "activation_rate": 0.7141196978500871
+    },
+    {
+      "feature_idx": 401,
+      "mean_activation": 0.3496849238872528,
+      "activation_rate": 0.7135386403253922
+    },
+    {
+      "feature_idx": 6368,
+      "mean_activation": 0.2229911834001541,
+      "activation_rate": 0.5212085996513655
+    },
+    {
+      "feature_idx": 63228,
+      "mean_activation": 0.22005927562713623,
+      "activation_rate": 0.5525857059848925
+    },
+    {
+      "feature_idx": 125190,
+      "mean_activation": 0.21992215514183044,
+      "activation_rate": 0.5787332945961651
+    },
+    {
+      "feature_idx": 62579,
+      "mean_activation": 0.1975586712360382,
+      "activation_rate": 0.38756536897152816
+    },
+    {
+      "feature_idx": 25500,
+      "mean_activation": 0.0902176946401596,
+      "activation_rate": 0.19523532829750145
+    },
+    {
+      "feature_idx": 29742,
+      "mean_activation": 0.06277353316545486,
+      "activation_rate": 0.17024985473561882
+    },
+    {
+      "feature_idx": 102166,
+      "mean_activation": 0.05733596533536911,
+      "activation_rate": 0.14294015107495642
+    },
+    {
+      "feature_idx": 44523,
+      "mean_activation": 0.04847792163491249,
+      "activation_rate": 0.12027890761185357
+    },
+    {
+      "feature_idx": 81,
+      "mean_activation": 0.03530031815171242,
+      "activation_rate": 0.06624055781522371
+    },
+    {
+      "feature_idx": 69334,
+      "mean_activation": 0.022301560267806053,
+      "activation_rate": 0.05984892504357931
+    },
+    {
+      "feature_idx": 49824,
+      "mean_activation": 0.016496043652296066,
+      "activation_rate": 0.03544450900639163
+    },
+    {
+      "feature_idx": 69791,
+      "mean_activation": 0.013744239695370197,
+      "activation_rate": 0.03428239395700174
+    }
+  ],
+  "Theory-Only (Partial Refusal)": [
+    {
+      "feature_idx": 123331,
+      "mean_activation": 1.3120639324188232,
+      "activation_rate": 0.967741935483871
+    },
+    {
+      "feature_idx": 58822,
+      "mean_activation": 1.2512496709823608,
+      "activation_rate": 0.9596774193548387
+    },
+    {
+      "feature_idx": 27763,
+      "mean_activation": 0.6221452951431274,
+      "activation_rate": 0.8870967741935484
+    },
+    {
+      "feature_idx": 84702,
+      "mean_activation": 0.5718459486961365,
+      "activation_rate": 0.8790322580645161
+    },
+    {
+      "feature_idx": 44606,
+      "mean_activation": 0.509282648563385,
+      "activation_rate": 0.8790322580645161
+    },
+    {
+      "feature_idx": 130862,
+      "mean_activation": 0.44435155391693115,
+      "activation_rate": 0.782258064516129
+    },
+    {
+      "feature_idx": 6368,
+      "mean_activation": 0.41329023241996765,
+      "activation_rate": 0.7903225806451613
+    },
+    {
+      "feature_idx": 37431,
+      "mean_activation": 0.34857597947120667,
+      "activation_rate": 0.7661290322580645
+    },
+    {
+      "feature_idx": 63228,
+      "mean_activation": 0.24346204102039337,
+      "activation_rate": 0.5645161290322581
+    },
+    {
+      "feature_idx": 62579,
+      "mean_activation": 0.23464252054691315,
+      "activation_rate": 0.43548387096774194
+    },
+    {
+      "feature_idx": 25500,
+      "mean_activation": 0.21820557117462158,
+      "activation_rate": 0.3790322580645161
+    },
+    {
+      "feature_idx": 125190,
+      "mean_activation": 0.1884005218744278,
+      "activation_rate": 0.4596774193548387
+    },
+    {
+      "feature_idx": 401,
+      "mean_activation": 0.18538798391819,
+      "activation_rate": 0.4838709677419355
+    },
+    {
+      "feature_idx": 102166,
+      "mean_activation": 0.10501347482204437,
+      "activation_rate": 0.25806451612903225
+    },
+    {
+      "feature_idx": 29742,
+      "mean_activation": 0.10400141030550003,
+      "activation_rate": 0.23387096774193547
+    },
+    {
+      "feature_idx": 81,
+      "mean_activation": 0.05975979194045067,
+      "activation_rate": 0.12903225806451613
+    },
+    {
+      "feature_idx": 69334,
+      "mean_activation": 0.04171089828014374,
+      "activation_rate": 0.12096774193548387
+    },
+    {
+      "feature_idx": 44523,
+      "mean_activation": 0.027843333780765533,
+      "activation_rate": 0.06451612903225806
+    },
+    {
+      "feature_idx": 69791,
+      "mean_activation": 0.02222449518740177,
+      "activation_rate": 0.056451612903225805
+    },
+    {
+      "feature_idx": 49824,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    }
+  ],
+  "Caveat / Disclaimer Compliance": [
+    {
+      "feature_idx": 123331,
+      "mean_activation": 1.2274848222732544,
+      "activation_rate": 0.9428571428571428
+    },
+    {
+      "feature_idx": 58822,
+      "mean_activation": 0.8865987062454224,
+      "activation_rate": 0.8484472049689441
+    },
+    {
+      "feature_idx": 27763,
+      "mean_activation": 0.4728456437587738,
+      "activation_rate": 0.7018633540372671
+    },
+    {
+      "feature_idx": 130862,
+      "mean_activation": 0.4693186581134796,
+      "activation_rate": 0.7291925465838509
+    },
+    {
+      "feature_idx": 84702,
+      "mean_activation": 0.41825997829437256,
+      "activation_rate": 0.6770186335403726
+    },
+    {
+      "feature_idx": 6368,
+      "mean_activation": 0.4146256446838379,
+      "activation_rate": 0.7204968944099379
+    },
+    {
+      "feature_idx": 44606,
+      "mean_activation": 0.409006804227829,
+      "activation_rate": 0.7192546583850932
+    },
+    {
+      "feature_idx": 37431,
+      "mean_activation": 0.4080209732055664,
+      "activation_rate": 0.6546583850931676
+    },
+    {
+      "feature_idx": 63228,
+      "mean_activation": 0.30703943967819214,
+      "activation_rate": 0.6049689440993788
+    },
+    {
+      "feature_idx": 25500,
+      "mean_activation": 0.289806991815567,
+      "activation_rate": 0.5018633540372671
+    },
+    {
+      "feature_idx": 401,
+      "mean_activation": 0.27540987730026245,
+      "activation_rate": 0.6012422360248447
+    },
+    {
+      "feature_idx": 125190,
+      "mean_activation": 0.2022802084684372,
+      "activation_rate": 0.4720496894409938
+    },
+    {
+      "feature_idx": 62579,
+      "mean_activation": 0.18487215042114258,
+      "activation_rate": 0.3565217391304348
+    },
+    {
+      "feature_idx": 81,
+      "mean_activation": 0.17399951815605164,
+      "activation_rate": 0.26956521739130435
+    },
+    {
+      "feature_idx": 29742,
+      "mean_activation": 0.14911600947380066,
+      "activation_rate": 0.33291925465838507
+    },
+    {
+      "feature_idx": 102166,
+      "mean_activation": 0.14457501471042633,
+      "activation_rate": 0.3316770186335404
+    },
+    {
+      "feature_idx": 69334,
+      "mean_activation": 0.07404561340808868,
+      "activation_rate": 0.1763975155279503
+    },
+    {
+      "feature_idx": 69791,
+      "mean_activation": 0.042334914207458496,
+      "activation_rate": 0.10683229813664596
+    },
+    {
+      "feature_idx": 44523,
+      "mean_activation": 0.03919151425361633,
+      "activation_rate": 0.1031055900621118
+    },
+    {
+      "feature_idx": 49824,
+      "mean_activation": 0.013584642671048641,
+      "activation_rate": 0.03354037267080745
+    }
+  ],
+  "Preach / Lecturing Compliance": [
+    {
+      "feature_idx": 123331,
+      "mean_activation": 1.399625301361084,
+      "activation_rate": 0.9799196787148594
+    },
+    {
+      "feature_idx": 58822,
+      "mean_activation": 1.063955307006836,
+      "activation_rate": 0.9558232931726908
+    },
+    {
+      "feature_idx": 27763,
+      "mean_activation": 0.6501387357711792,
+      "activation_rate": 0.8795180722891566
+    },
+    {
+      "feature_idx": 37431,
+      "mean_activation": 0.5362323522567749,
+      "activation_rate": 0.8514056224899599
+    },
+    {
+      "feature_idx": 44606,
+      "mean_activation": 0.43869608640670776,
+      "activation_rate": 0.8514056224899599
+    },
+    {
+      "feature_idx": 84702,
+      "mean_activation": 0.42811521887779236,
+      "activation_rate": 0.7630522088353414
+    },
+    {
+      "feature_idx": 130862,
+      "mean_activation": 0.403076171875,
+      "activation_rate": 0.7590361445783133
+    },
+    {
+      "feature_idx": 63228,
+      "mean_activation": 0.3637503981590271,
+      "activation_rate": 0.7590361445783133
+    },
+    {
+      "feature_idx": 401,
+      "mean_activation": 0.34249383211135864,
+      "activation_rate": 0.7349397590361446
+    },
+    {
+      "feature_idx": 125190,
+      "mean_activation": 0.25058645009994507,
+      "activation_rate": 0.6345381526104418
+    },
+    {
+      "feature_idx": 6368,
+      "mean_activation": 0.24789591133594513,
+      "activation_rate": 0.5140562248995983
+    },
+    {
+      "feature_idx": 62579,
+      "mean_activation": 0.1726503223180771,
+      "activation_rate": 0.37349397590361444
+    },
+    {
+      "feature_idx": 25500,
+      "mean_activation": 0.16942790150642395,
+      "activation_rate": 0.2971887550200803
+    },
+    {
+      "feature_idx": 29742,
+      "mean_activation": 0.1230759248137474,
+      "activation_rate": 0.27309236947791166
+    },
+    {
+      "feature_idx": 102166,
+      "mean_activation": 0.11082562804222107,
+      "activation_rate": 0.27309236947791166
+    },
+    {
+      "feature_idx": 81,
+      "mean_activation": 0.06810814887285233,
+      "activation_rate": 0.0963855421686747
+    },
+    {
+      "feature_idx": 69334,
+      "mean_activation": 0.029510628432035446,
+      "activation_rate": 0.06827309236947791
+    },
+    {
+      "feature_idx": 44523,
+      "mean_activation": 0.023352492600679398,
+      "activation_rate": 0.0642570281124498
+    },
+    {
+      "feature_idx": 69791,
+      "mean_activation": 0.015206871554255486,
+      "activation_rate": 0.03614457831325301
+    },
+    {
+      "feature_idx": 49824,
+      "mean_activation": 0.006052413489669561,
+      "activation_rate": 0.012048192771084338
+    }
+  ],
+  "Full Compliance": [
+    {
+      "feature_idx": 123331,
+      "mean_activation": 1.5647828578948975,
+      "activation_rate": 0.9906542056074766
+    },
+    {
+      "feature_idx": 401,
+      "mean_activation": 0.7186555862426758,
+      "activation_rate": 0.9158878504672897
+    },
+    {
+      "feature_idx": 58822,
+      "mean_activation": 0.6357960104942322,
+      "activation_rate": 0.6869158878504673
+    },
+    {
+      "feature_idx": 37431,
+      "mean_activation": 0.6236108541488647,
+      "activation_rate": 0.8644859813084113
+    },
+    {
+      "feature_idx": 44606,
+      "mean_activation": 0.4478411376476288,
+      "activation_rate": 0.7336448598130841
+    },
+    {
+      "feature_idx": 25500,
+      "mean_activation": 0.4020049571990967,
+      "activation_rate": 0.514018691588785
+    },
+    {
+      "feature_idx": 125190,
+      "mean_activation": 0.3905769884586334,
+      "activation_rate": 0.6401869158878505
+    },
+    {
+      "feature_idx": 49824,
+      "mean_activation": 0.38355156779289246,
+      "activation_rate": 0.4392523364485981
+    },
+    {
+      "feature_idx": 27763,
+      "mean_activation": 0.3469885289669037,
+      "activation_rate": 0.5934579439252337
+    },
+    {
+      "feature_idx": 6368,
+      "mean_activation": 0.30561235547065735,
+      "activation_rate": 0.5934579439252337
+    },
+    {
+      "feature_idx": 84702,
+      "mean_activation": 0.2833203971385956,
+      "activation_rate": 0.5
+    },
+    {
+      "feature_idx": 130862,
+      "mean_activation": 0.2009742558002472,
+      "activation_rate": 0.4439252336448598
+    },
+    {
+      "feature_idx": 63228,
+      "mean_activation": 0.19692473113536835,
+      "activation_rate": 0.4205607476635514
+    },
+    {
+      "feature_idx": 44523,
+      "mean_activation": 0.09497246891260147,
+      "activation_rate": 0.24766355140186916
+    },
+    {
+      "feature_idx": 29742,
+      "mean_activation": 0.09365997463464737,
+      "activation_rate": 0.21495327102803738
+    },
+    {
+      "feature_idx": 102166,
+      "mean_activation": 0.0651480108499527,
+      "activation_rate": 0.18691588785046728
+    },
+    {
+      "feature_idx": 62579,
+      "mean_activation": 0.06443505734205246,
+      "activation_rate": 0.1261682242990654
+    },
+    {
+      "feature_idx": 81,
+      "mean_activation": 0.011650852859020233,
+      "activation_rate": 0.028037383177570093
+    },
+    {
+      "feature_idx": 69791,
+      "mean_activation": 0.0026764064095914364,
+      "activation_rate": 0.009345794392523364
+    },
+    {
+      "feature_idx": 69334,
+      "mean_activation": 0.0011569649213925004,
+      "activation_rate": 0.004672897196261682
+    }
+  ],
+  "Epistemic Refusal": [
+    {
+      "feature_idx": 123331,
+      "mean_activation": 1.0537865161895752,
+      "activation_rate": 0.9891891891891892
+    },
+    {
+      "feature_idx": 125190,
+      "mean_activation": 0.760677695274353,
+      "activation_rate": 0.8810810810810811
+    },
+    {
+      "feature_idx": 44606,
+      "mean_activation": 0.7007318735122681,
+      "activation_rate": 0.9608108108108108
+    },
+    {
+      "feature_idx": 27763,
+      "mean_activation": 0.5976285338401794,
+      "activation_rate": 0.8837837837837837
+    },
+    {
+      "feature_idx": 58822,
+      "mean_activation": 0.5802361369132996,
+      "activation_rate": 0.7472972972972973
+    },
+    {
+      "feature_idx": 44523,
+      "mean_activation": 0.4677375555038452,
+      "activation_rate": 0.8283783783783784
+    },
+    {
+      "feature_idx": 49824,
+      "mean_activation": 0.4406690299510956,
+      "activation_rate": 0.6243243243243243
+    },
+    {
+      "feature_idx": 130862,
+      "mean_activation": 0.38303956389427185,
+      "activation_rate": 0.731081081081081
+    },
+    {
+      "feature_idx": 401,
+      "mean_activation": 0.36635926365852356,
+      "activation_rate": 0.7216216216216216
+    },
+    {
+      "feature_idx": 62579,
+      "mean_activation": 0.3507075011730194,
+      "activation_rate": 0.5527027027027027
+    },
+    {
+      "feature_idx": 84702,
+      "mean_activation": 0.3266241252422333,
+      "activation_rate": 0.5756756756756757
+    },
+    {
+      "feature_idx": 6368,
+      "mean_activation": 0.16744591295719147,
+      "activation_rate": 0.4175675675675676
+    },
+    {
+      "feature_idx": 37431,
+      "mean_activation": 0.11422073841094971,
+      "activation_rate": 0.33378378378378376
+    },
+    {
+      "feature_idx": 63228,
+      "mean_activation": 0.0594128780066967,
+      "activation_rate": 0.16216216216216217
+    },
+    {
+      "feature_idx": 25500,
+      "mean_activation": 0.019330166280269623,
+      "activation_rate": 0.0445945945945946
+    },
+    {
+      "feature_idx": 29742,
+      "mean_activation": 0.014141472056508064,
+      "activation_rate": 0.04054054054054054
+    },
+    {
+      "feature_idx": 102166,
+      "mean_activation": 0.012541052885353565,
+      "activation_rate": 0.031081081081081083
+    },
+    {
+      "feature_idx": 69791,
+      "mean_activation": 0.012298054061830044,
+      "activation_rate": 0.02972972972972973
+    },
+    {
+      "feature_idx": 69334,
+      "mean_activation": 0.010539865121245384,
+      "activation_rate": 0.02972972972972973
+    },
+    {
+      "feature_idx": 81,
+      "mean_activation": 0.008838973008096218,
+      "activation_rate": 0.021621621621621623
+    }
+  ],
+  "The Pivot / Deflection": [
+    {
+      "feature_idx": 123331,
+      "mean_activation": 1.1565115451812744,
+      "activation_rate": 0.9777777777777777
+    },
+    {
+      "feature_idx": 58822,
+      "mean_activation": 0.8871056437492371,
+      "activation_rate": 0.9111111111111111
+    },
+    {
+      "feature_idx": 27763,
+      "mean_activation": 0.4482262432575226,
+      "activation_rate": 0.7111111111111111
+    },
+    {
+      "feature_idx": 130862,
+      "mean_activation": 0.41767755150794983,
+      "activation_rate": 0.6666666666666666
+    },
+    {
+      "feature_idx": 401,
+      "mean_activation": 0.40999311208724976,
+      "activation_rate": 0.8
+    },
+    {
+      "feature_idx": 44606,
+      "mean_activation": 0.3887893557548523,
+      "activation_rate": 0.7555555555555555
+    },
+    {
+      "feature_idx": 6368,
+      "mean_activation": 0.3832874596118927,
+      "activation_rate": 0.6222222222222222
+    },
+    {
+      "feature_idx": 84702,
+      "mean_activation": 0.3663245737552643,
+      "activation_rate": 0.6222222222222222
+    },
+    {
+      "feature_idx": 37431,
+      "mean_activation": 0.32045280933380127,
+      "activation_rate": 0.6888888888888889
+    },
+    {
+      "feature_idx": 63228,
+      "mean_activation": 0.2594493329524994,
+      "activation_rate": 0.5555555555555556
+    },
+    {
+      "feature_idx": 125190,
+      "mean_activation": 0.25113826990127563,
+      "activation_rate": 0.5555555555555556
+    },
+    {
+      "feature_idx": 25500,
+      "mean_activation": 0.15724928677082062,
+      "activation_rate": 0.3333333333333333
+    },
+    {
+      "feature_idx": 62579,
+      "mean_activation": 0.12906284630298615,
+      "activation_rate": 0.28888888888888886
+    },
+    {
+      "feature_idx": 29742,
+      "mean_activation": 0.12571966648101807,
+      "activation_rate": 0.28888888888888886
+    },
+    {
+      "feature_idx": 44523,
+      "mean_activation": 0.12346932291984558,
+      "activation_rate": 0.3111111111111111
+    },
+    {
+      "feature_idx": 81,
+      "mean_activation": 0.1026427149772644,
+      "activation_rate": 0.15555555555555556
+    },
+    {
+      "feature_idx": 102166,
+      "mean_activation": 0.09143565595149994,
+      "activation_rate": 0.28888888888888886
+    },
+    {
+      "feature_idx": 69334,
+      "mean_activation": 0.048501238226890564,
+      "activation_rate": 0.13333333333333333
+    },
+    {
+      "feature_idx": 49824,
+      "mean_activation": 0.04670937359333038,
+      "activation_rate": 0.1111111111111111
+    },
+    {
+      "feature_idx": 69791,
+      "mean_activation": 0.011621875688433647,
+      "activation_rate": 0.044444444444444446
+    }
+  ],
+  "4. Both-Sides Neutrality": [
+    {
+      "feature_idx": 130862,
+      "mean_activation": 1.229433298110962,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 6368,
+      "mean_activation": 1.094713568687439,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 81,
+      "mean_activation": 0.5110260248184204,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 69334,
+      "mean_activation": 0.47524493932724,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 62579,
+      "mean_activation": 0.4274880290031433,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 69791,
+      "mean_activation": 0.4154599905014038,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 58822,
+      "mean_activation": 0.4091091752052307,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 102166,
+      "mean_activation": 0.4011234641075134,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 123331,
+      "mean_activation": 0.3164151906967163,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 44606,
+      "mean_activation": 0.2041354775428772,
+      "activation_rate": 1.0
+    },
+    {
+      "feature_idx": 125190,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    },
+    {
+      "feature_idx": 401,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    },
+    {
+      "feature_idx": 29742,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    },
+    {
+      "feature_idx": 27763,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    },
+    {
+      "feature_idx": 37431,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    },
+    {
+      "feature_idx": 84702,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    },
+    {
+      "feature_idx": 44523,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    },
+    {
+      "feature_idx": 49824,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    },
+    {
+      "feature_idx": 25500,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    },
+    {
+      "feature_idx": 63228,
+      "mean_activation": 0.0,
+      "activation_rate": 0.0
+    }
+  ]
+}

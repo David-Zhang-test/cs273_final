@@ -1,0 +1,83 @@
+{
+  "layer": 11,
+  "sae_id": "resid_post_layer_11_trainer_1",
+  "num_features_analyzed": 20,
+  "num_categories": 9,
+  "categories": [
+    "Polite Full Refusal",
+    "Both-Sides Neutrality",
+    "Theory-Only (Partial Refusal)",
+    "Caveat / Disclaimer Compliance",
+    "Preach / Lecturing Compliance",
+    "Full Compliance",
+    "Epistemic Refusal",
+    "The Pivot / Deflection",
+    "4. Both-Sides Neutrality"
+  ],
+  "total_samples": 5000,
+  "key_findings": {
+    "features_per_category": {
+      "Polite Full Refusal": 20,
+      "Both-Sides Neutrality": 20,
+      "Theory-Only (Partial Refusal)": 20,
+      "Caveat / Disclaimer Compliance": 20,
+      "Preach / Lecturing Compliance": 20,
+      "Full Compliance": 20,
+      "Epistemic Refusal": 20,
+      "The Pivot / Deflection": 20,
+      "4. Both-Sides Neutrality": 20
+    },
+    "top_discriminative_features": [
+      {
+        "feature_idx": 123331,
+        "top_category": "Full Compliance",
+        "activation_strength": 1.5647828578948975
+      },
+      {
+        "feature_idx": 58822,
+        "top_category": "Theory-Only (Partial Refusal)",
+        "activation_strength": 1.2512496709823608
+      },
+      {
+        "feature_idx": 130862,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 1.229433298110962
+      },
+      {
+        "feature_idx": 6368,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 1.094713568687439
+      },
+      {
+        "feature_idx": 125190,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 0.760677695274353
+      },
+      {
+        "feature_idx": 401,
+        "top_category": "Full Compliance",
+        "activation_strength": 0.7186555862426758
+      },
+      {
+        "feature_idx": 44606,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 0.7007318735122681
+      },
+      {
+        "feature_idx": 29742,
+        "top_category": "Polite Full Refusal",
+        "activation_strength": 0.6979548931121826
+      },
+      {
+        "feature_idx": 27763,
+        "top_category": "Preach / Lecturing Compliance",
+        "activation_strength": 0.6501387357711792
+      },
+      {
+        "feature_idx": 37431,
+        "top_category": "Full Compliance",
+        "activation_strength": 0.6236108541488647
+      }
+    ]
+  }
+}
