@@ -77,6 +77,47 @@ With the dataset labeled, the focus shifts to internal model representations.
     * *Research Question:* Is there a distinct "neutrality" feature that activates for Category 4 responses? Does Category 6 (Theory-Only) activate both a "knowledge retrieval" feature and a "safety gating" feature simultaneously?
 4.  **Causal Intervention (Steering):** Once specific features are identified, perform activation steering. Artificially amplify the "Theory-Only" feature during a prompt that normally results in "Polite Full Refusal" to see if the model's behavior shifts accordingly.
 
+### Preliminary Findings from the Current SAE Sweep
+
+The current layer sweep and feature interpretation results support a more specific mechanistic picture than the original binary-refusal framing.
+
+#### Hypothesis Tested
+
+We tested whether abstention forms as a two-stage hierarchy:
+
+1. A shared abstention core emerges first and then gradually strengthens across later layers.
+2. Category-specific abstention nodes appear later and become sharper in the final layers.
+
+#### How the Hypothesis Was Tested
+
+We compared SAE interpretation summaries and sweep statistics across layers 7, 11, 15, 19, 23, and 27.
+
+For each layer, we inspected:
+
+1. The top discriminative SAE features and which judge categories they aligned with.
+2. Category-feature profiles to see whether features were shared across all abstention types or were specific to one refusal subtype.
+3. Sweep-level metrics (`cramers_v`, `f_statistic`, `representational_distance`, and `mean_l0`) to track how separable the category structure was in each layer.
+
+#### Result
+
+The data does not support a single abstention core that simply grows monotonically from layer 15 to layer 27.
+
+1. Layers 7 and 11 are still mixed and relatively generic. The strongest features are not yet cleanly abstention-specific.
+2. Layer 15 is a transition layer with strong geometric separation, but it is still dominated by mixed response-style features rather than a clean abstention gate.
+3. Layer 19 continues the transition, with some refusal-related features becoming clearer but not yet fully specialized.
+4. Layer 23 is the main turning point: refusal-specific and category-specific features become much more visible.
+5. Layer 27 is the most specialized layer, with the clearest epistemic-refusal and subtype-specific structure.
+
+#### Revised Conclusion
+
+The best supported interpretation is that abstention is not encoded as one stable binary core followed by a later subtype chooser. Instead, the representation progressively reorganizes across layers:
+
+1. Early layers carry diffuse response structure.
+2. Mid layers begin separating refusal-related geometry.
+3. Late layers sharpen category-specific refusal signatures, especially for epistemic refusal.
+
+This means the most promising causal intervention points are likely not just the final layer, but also the transition region around layer 23 where subtype specialization first becomes strong.
+
 ---
 
 ## 4. Expected Contributions and Impact

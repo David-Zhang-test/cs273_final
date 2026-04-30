@@ -3,6 +3,7 @@ import os
 import gc
 from transformer_lens import HookedTransformer
 from tqdm import tqdm
+import torch
 
 from transformer_lens import HookedTransformer
 from transformer_lens.cache.key_value_cache_entry import TransformerLensKeyValueCacheEntry
@@ -38,7 +39,7 @@ def patch_transformer_lens_kv_cache_dtype():
 class ModelRunner:
     def __init__(
         self,
-        model_name="meta-llama/Meta-Llama-3.1-8B-Instruct",
+        model_name="meta-llama/Llama-3.1-8B-Instruct",
         device="cuda",
         model_dtype="bfloat16",
         n_devices=1,
