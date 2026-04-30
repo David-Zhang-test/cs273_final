@@ -30,6 +30,7 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 import torch
+from multiprocessing import Process, Queue
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
@@ -239,6 +240,43 @@ def try_judge(prompt_text: str, response_text: str, variation_type: str, judge_m
         return {"judge_response": f"ERROR: {exc}", "top_category": ""}
 
 
+def safe_try_judge(prompt_text: str, response_text: str, variation_type: str, judge_model: str, use_local: bool, timeout_sec: float = 10.0) -> Dict[str, str]:
+    """Run try_judge in a separate process and enforce a timeout.
+
+    This prevents the main script from blocking indefinitely if the judge
+    endpoint is unreachable or the client library retries for a long time.
+    """
+    def _target(q: Queue):
+        try:
+            res = try_judge(prompt_text, response_text, variation_type, judge_model, use_local)
+        except Exception as e:  # pragma: no cover - defensive
+            res = {"judge_response": f"ERROR: {e}", "top_category": ""}
+        try:
+            q.put(res)
+        except Exception:
+            pass
+
+    q: Queue = Queue()
+    p = Process(target=_target, args=(q,))
+    p.start()
+    p.join(timeout_sec)
+    if p.is_alive():
+        try:
+            p.terminate()
+        except Exception:
+            pass
+        p.join()
+        return {"judge_response": "ERROR: timeout", "top_category": ""}
+
+    if q.empty():
+        return {"judge_response": "ERROR: no response", "top_category": ""}
+
+    try:
+        return q.get_nowait()
+    except Exception:
+        return {"judge_response": "ERROR: unable to read judge result", "top_category": ""}
+
+
 def is_abstention_like(category: str) -> bool:
     return category in ABSTENTION_LIKE_CATEGORIES
 
@@ -350,38 +388,51 @@ def run_experiment(args) -> None:
     if model_runner is None:
         raise RuntimeError("ModelRunner was not initialized")
 
-    for example in examples:
-        baseline = infer_prompt(model_runner, example.variation, args.max_new_tokens)
+    # Generate responses and save them for offline judging.
+    # NOTE: per user request, do not call judge here; instead save all model outputs
+    # and a `to_judge.jsonl` that can be consumed later by a separate judging runner.
+    to_judge_path = output_dir / "to_judge.jsonl"
+    with to_judge_path.open("w", encoding="utf-8") as tj_f:
+        for example in examples:
+            baseline = infer_prompt(model_runner, example.variation, args.max_new_tokens)
 
-        judged_baseline = {"judge_response": "", "top_category": ""}
-        if args.judge:
-            judged_baseline = try_judge(example.variation, baseline, example.source_variation_type, args.judge_model, args.use_local_judge)
-
-        example_result = {
-            "row_index": example.row_index,
-            "source_category": example.source_category,
-            "judge_category": example.judge_category,
-            "prompt": example.variation,
-            "baseline_response": baseline,
-            "baseline_judge": judged_baseline,
-            "interventions": {},
-        }
-
-        for intervention_name, (direction, strength) in interventions.items():
-            hook_fn = build_hook(direction, strength)
-            steered = infer_prompt(model_runner, example.variation, args.max_new_tokens, hook_name=hook_name, hook_fn=hook_fn)
-
-            judged_steered = {"judge_response": "", "top_category": ""}
-            if args.judge:
-                judged_steered = try_judge(example.variation, steered, example.source_variation_type, args.judge_model, args.use_local_judge)
-
-            example_result["interventions"][intervention_name] = {
-                "strength": strength,
-                "steered_response": steered,
-                "steered_judge": judged_steered,
+            example_result = {
+                "row_index": example.row_index,
+                "source_category": example.source_category,
+                "judge_category": example.judge_category,
+                "prompt": example.variation,
+                "baseline_response": baseline,
+                "baseline_judge": {"judge_response": "", "top_category": ""},
+                "interventions": {},
             }
 
-        report["results"].append(example_result)
+            for intervention_name, (direction, strength) in interventions.items():
+                hook_fn = build_hook(direction, strength)
+                steered = infer_prompt(
+                    model_runner, example.variation, args.max_new_tokens, hook_name=hook_name, hook_fn=hook_fn
+                )
+
+                # leave judged fields empty; the separate judge runner will fill them
+                example_result["interventions"][intervention_name] = {
+                    "strength": strength,
+                    "steered_response": steered,
+                    "steered_judge": {"judge_response": "", "top_category": ""},
+                }
+
+            report["results"].append(example_result)
+            # write a compact record for offline judging
+            compact = {
+                "row_index": example.row_index,
+                "prompt": example.variation,
+                "variation_type": example.source_variation_type,
+                "baseline_response": example_result["baseline_response"],
+                "interventions": {
+                    name: payload["steered_response"] for name, payload in example_result["interventions"].items()
+                },
+            }
+            tj_f.write(json.dumps(compact, ensure_ascii=False) + "\n")
+
+    logger.info("Saved model outputs and judge tasks to %s (and %s)", out_path, to_judge_path)
 
     report["summary"] = summarize_results(report["results"])
 
@@ -410,6 +461,7 @@ def build_arg_parser():
     parser.add_argument("--judge", action="store_true", help="Judge baseline and steered outputs after generation")
     parser.add_argument("--judge_model", type=str, default="gpt-4o-mini")
     parser.add_argument("--use_local_judge", action="store_true", help="Use local Ollama-compatible judge endpoint")
+    parser.add_argument("--judge_timeout", type=float, default=10.0, help="Timeout in seconds for judge API calls (per call)")
     parser.add_argument("--dry_run", action="store_true", help="Validate configuration without loading the model")
     return parser
 
