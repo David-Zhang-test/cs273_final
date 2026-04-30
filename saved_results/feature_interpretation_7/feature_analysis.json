@@ -1,0 +1,1402 @@
+{
+  "109323": {
+    "feature_index": 109323,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.34869202971458435,
+        "std_activation": 0.5512269735336304,
+        "max_activation": 2.9331696033477783,
+        "activation_rate": 0.4604904632152589,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.644492506980896,
+        "std_activation": 0.6215746998786926,
+        "max_activation": 2.795487880706787,
+        "activation_rate": 0.7356188262638002,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 1.0969374179840088,
+        "std_activation": 0.726469099521637,
+        "max_activation": 2.8690145015716553,
+        "activation_rate": 0.9032258064516129,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.5864884853363037,
+        "std_activation": 0.6186010837554932,
+        "max_activation": 2.645260810852051,
+        "activation_rate": 0.6770186335403726,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.5830617547035217,
+        "std_activation": 0.5300043821334839,
+        "max_activation": 2.574834108352661,
+        "activation_rate": 0.7951807228915663,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.35930135846138,
+        "std_activation": 0.5348463654518127,
+        "max_activation": 2.428459644317627,
+        "activation_rate": 0.4953271028037383,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.3933735489845276,
+        "std_activation": 0.4985024929046631,
+        "max_activation": 2.6075451374053955,
+        "activation_rate": 0.5689189189189189,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.4593185782432556,
+        "std_activation": 0.5287668108940125,
+        "max_activation": 2.1089577674865723,
+        "activation_rate": 0.6888888888888889,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.0,
+        "std_activation": 0.0,
+        "max_activation": 0.0,
+        "activation_rate": 0.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Theory-Only (Partial Refusal)",
+    "top_category_activation": 1.0969374179840088
+  },
+  "83498": {
+    "feature_index": 83498,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.43267491459846497,
+        "std_activation": 0.40118497610092163,
+        "max_activation": 1.4367468357086182,
+        "activation_rate": 0.6512261580381471,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.7001439332962036,
+        "std_activation": 0.21377938985824585,
+        "max_activation": 1.379281997680664,
+        "activation_rate": 0.9697850087158628,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.5922495722770691,
+        "std_activation": 0.23497650027275085,
+        "max_activation": 1.0845787525177002,
+        "activation_rate": 0.9274193548387096,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.5970889925956726,
+        "std_activation": 0.3367353081703186,
+        "max_activation": 1.391861915588379,
+        "activation_rate": 0.8360248447204969,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.7094655632972717,
+        "std_activation": 0.22468213737010956,
+        "max_activation": 1.47239089012146,
+        "activation_rate": 0.9598393574297188,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.9466796517372131,
+        "std_activation": 0.2701641917228699,
+        "max_activation": 1.4374806880950928,
+        "activation_rate": 0.9766355140186916,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.7494910955429077,
+        "std_activation": 0.20952366292476654,
+        "max_activation": 1.4156782627105713,
+        "activation_rate": 0.9918918918918919,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.710793673992157,
+        "std_activation": 0.2985585927963257,
+        "max_activation": 1.3668208122253418,
+        "activation_rate": 0.9333333333333333,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.0,
+        "std_activation": 0.0,
+        "max_activation": 0.0,
+        "activation_rate": 0.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Full Compliance",
+    "top_category_activation": 0.9466796517372131
+  },
+  "55339": {
+    "feature_index": 55339,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.42974042892456055,
+        "std_activation": 0.4566233456134796,
+        "max_activation": 1.5185067653656006,
+        "activation_rate": 0.6185286103542235,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.17573577165603638,
+        "std_activation": 0.25726059079170227,
+        "max_activation": 1.3124949932098389,
+        "activation_rate": 0.4654270772806508,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.27483516931533813,
+        "std_activation": 0.3114176392555237,
+        "max_activation": 1.3061401844024658,
+        "activation_rate": 0.6209677419354839,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.4510291814804077,
+        "std_activation": 0.3731086552143097,
+        "max_activation": 1.5055588483810425,
+        "activation_rate": 0.8074534161490683,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.312501460313797,
+        "std_activation": 0.29308566451072693,
+        "max_activation": 1.2198481559753418,
+        "activation_rate": 0.7389558232931727,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.2755604088306427,
+        "std_activation": 0.2992514669895172,
+        "max_activation": 1.2247546911239624,
+        "activation_rate": 0.6074766355140186,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.09557285904884338,
+        "std_activation": 0.17489312589168549,
+        "max_activation": 1.1009663343429565,
+        "activation_rate": 0.3364864864864865,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.3151569962501526,
+        "std_activation": 0.35022255778312683,
+        "max_activation": 1.1458089351654053,
+        "activation_rate": 0.6444444444444445,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.9520455598831177,
+        "std_activation": 0.0,
+        "max_activation": 0.9520455598831177,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "4. Both-Sides Neutrality",
+    "top_category_activation": 0.9520455598831177
+  },
+  "18875": {
+    "feature_index": 18875,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.5283796191215515,
+        "std_activation": 0.43108251690864563,
+        "max_activation": 1.6002877950668335,
+        "activation_rate": 0.7702089009990918,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 1.0700228214263916,
+        "std_activation": 0.401297390460968,
+        "max_activation": 1.799612283706665,
+        "activation_rate": 0.9662986635676932,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 1.151975154876709,
+        "std_activation": 0.3877382278442383,
+        "max_activation": 1.7546098232269287,
+        "activation_rate": 0.9758064516129032,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.872751772403717,
+        "std_activation": 0.5063453912734985,
+        "max_activation": 1.7690539360046387,
+        "activation_rate": 0.8571428571428571,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 1.0111889839172363,
+        "std_activation": 0.3610360622406006,
+        "max_activation": 1.616959810256958,
+        "activation_rate": 0.9718875502008032,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.6503589749336243,
+        "std_activation": 0.5108275413513184,
+        "max_activation": 1.6580184698104858,
+        "activation_rate": 0.7757009345794392,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.7021346688270569,
+        "std_activation": 0.3566822111606598,
+        "max_activation": 1.7331616878509521,
+        "activation_rate": 0.9405405405405406,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.867179274559021,
+        "std_activation": 0.4175199270248413,
+        "max_activation": 1.5799163579940796,
+        "activation_rate": 0.9111111111111111,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.39405134320259094,
+        "std_activation": 0.0,
+        "max_activation": 0.39405134320259094,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Theory-Only (Partial Refusal)",
+    "top_category_activation": 1.151975154876709
+  },
+  "122355": {
+    "feature_index": 122355,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 1.4276713132858276,
+        "std_activation": 0.6140369176864624,
+        "max_activation": 3.1879937648773193,
+        "activation_rate": 1.0,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 1.297818899154663,
+        "std_activation": 0.3221699595451355,
+        "max_activation": 2.433560371398926,
+        "activation_rate": 1.0,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 1.1821309328079224,
+        "std_activation": 0.3197522461414337,
+        "max_activation": 2.158338785171509,
+        "activation_rate": 1.0,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 1.3220199346542358,
+        "std_activation": 0.4174662232398987,
+        "max_activation": 3.2558488845825195,
+        "activation_rate": 0.9987577639751553,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 1.378849983215332,
+        "std_activation": 0.30055439472198486,
+        "max_activation": 2.1442489624023438,
+        "activation_rate": 1.0,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 1.6585981845855713,
+        "std_activation": 0.4026816487312317,
+        "max_activation": 2.618119716644287,
+        "activation_rate": 1.0,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 1.1075705289840698,
+        "std_activation": 0.3268176317214966,
+        "max_activation": 2.1438686847686768,
+        "activation_rate": 1.0,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 1.2834564447402954,
+        "std_activation": 0.41149890422821045,
+        "max_activation": 2.0490715503692627,
+        "activation_rate": 1.0,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.921940803527832,
+        "std_activation": 0.0,
+        "max_activation": 0.921940803527832,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Full Compliance",
+    "top_category_activation": 1.6585981845855713
+  },
+  "35935": {
+    "feature_index": 35935,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.23647800087928772,
+        "std_activation": 0.25296270847320557,
+        "max_activation": 0.8496562242507935,
+        "activation_rate": 0.5449591280653951,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.14261169731616974,
+        "std_activation": 0.16822455823421478,
+        "max_activation": 0.8416534662246704,
+        "activation_rate": 0.5020337013364323,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.18494650721549988,
+        "std_activation": 0.1899545043706894,
+        "max_activation": 0.8254021406173706,
+        "activation_rate": 0.5967741935483871,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.19683526456356049,
+        "std_activation": 0.2265307754278183,
+        "max_activation": 0.8526031970977783,
+        "activation_rate": 0.5254658385093167,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.15541371703147888,
+        "std_activation": 0.17359896004199982,
+        "max_activation": 0.7126702070236206,
+        "activation_rate": 0.5220883534136547,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.08907794952392578,
+        "std_activation": 0.16302227973937988,
+        "max_activation": 0.7868564128875732,
+        "activation_rate": 0.2897196261682243,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.1837776154279709,
+        "std_activation": 0.15888379514217377,
+        "max_activation": 0.7911875247955322,
+        "activation_rate": 0.65,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.16972754895687103,
+        "std_activation": 0.18633173406124115,
+        "max_activation": 0.5972597599029541,
+        "activation_rate": 0.5111111111111111,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.7326875925064087,
+        "std_activation": 0.0,
+        "max_activation": 0.7326875925064087,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "4. Both-Sides Neutrality",
+    "top_category_activation": 0.7326875925064087
+  },
+  "63075": {
+    "feature_index": 63075,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.1033344715833664,
+        "std_activation": 0.18424101173877716,
+        "max_activation": 0.8280187845230103,
+        "activation_rate": 0.27883742052679383,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.0234201792627573,
+        "std_activation": 0.09403607249259949,
+        "max_activation": 0.7482695579528809,
+        "activation_rate": 0.07088901801278326,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.0557623989880085,
+        "std_activation": 0.15273864567279816,
+        "max_activation": 0.7665842771530151,
+        "activation_rate": 0.14516129032258066,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.08744794130325317,
+        "std_activation": 0.1719072014093399,
+        "max_activation": 0.8287382125854492,
+        "activation_rate": 0.2422360248447205,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.03232666850090027,
+        "std_activation": 0.10882706195116043,
+        "max_activation": 0.6922584772109985,
+        "activation_rate": 0.10040160642570281,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.0030539734289050102,
+        "std_activation": 0.025901978835463524,
+        "max_activation": 0.2593136727809906,
+        "activation_rate": 0.014018691588785047,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.01015809178352356,
+        "std_activation": 0.06579413264989853,
+        "max_activation": 0.7754621505737305,
+        "activation_rate": 0.02837837837837838,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.04108507186174393,
+        "std_activation": 0.12062863260507584,
+        "max_activation": 0.48715099692344666,
+        "activation_rate": 0.1111111111111111,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.520959734916687,
+        "std_activation": 0.0,
+        "max_activation": 0.520959734916687,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "4. Both-Sides Neutrality",
+    "top_category_activation": 0.520959734916687
+  },
+  "20827": {
+    "feature_index": 20827,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.1706690788269043,
+        "std_activation": 0.25627192854881287,
+        "max_activation": 0.778490424156189,
+        "activation_rate": 0.3405994550408719,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.05065665394067764,
+        "std_activation": 0.1464526653289795,
+        "max_activation": 0.8041884899139404,
+        "activation_rate": 0.13248111563044743,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.08585841953754425,
+        "std_activation": 0.1858092099428177,
+        "max_activation": 0.6956790685653687,
+        "activation_rate": 0.20161290322580644,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.1548404097557068,
+        "std_activation": 0.25164809823036194,
+        "max_activation": 1.0694448947906494,
+        "activation_rate": 0.3204968944099379,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.05670703947544098,
+        "std_activation": 0.16805295646190643,
+        "max_activation": 0.7939317226409912,
+        "activation_rate": 0.12449799196787148,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.020726148039102554,
+        "std_activation": 0.09246405959129333,
+        "max_activation": 0.780176043510437,
+        "activation_rate": 0.06542056074766354,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.045628614723682404,
+        "std_activation": 0.1062466949224472,
+        "max_activation": 0.5811907052993774,
+        "activation_rate": 0.18243243243243243,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.12855468690395355,
+        "std_activation": 0.24253274500370026,
+        "max_activation": 0.8616498708724976,
+        "activation_rate": 0.28888888888888886,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.5207464694976807,
+        "std_activation": 0.0,
+        "max_activation": 0.5207464694976807,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "4. Both-Sides Neutrality",
+    "top_category_activation": 0.5207464694976807
+  },
+  "74864": {
+    "feature_index": 74864,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.12605828046798706,
+        "std_activation": 0.21278603374958038,
+        "max_activation": 1.135722279548645,
+        "activation_rate": 0.34150772025431425,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.31012341380119324,
+        "std_activation": 0.26048707962036133,
+        "max_activation": 1.1281707286834717,
+        "activation_rate": 0.7193492155723417,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.44483986496925354,
+        "std_activation": 0.28407377004623413,
+        "max_activation": 0.946006178855896,
+        "activation_rate": 0.8306451612903226,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.22849474847316742,
+        "std_activation": 0.24092423915863037,
+        "max_activation": 0.9227812886238098,
+        "activation_rate": 0.5813664596273292,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.2511671781539917,
+        "std_activation": 0.21759797632694244,
+        "max_activation": 0.9302226305007935,
+        "activation_rate": 0.6907630522088354,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.13388727605342865,
+        "std_activation": 0.2094171941280365,
+        "max_activation": 1.1089191436767578,
+        "activation_rate": 0.38317757009345793,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.13415122032165527,
+        "std_activation": 0.1690942645072937,
+        "max_activation": 0.8538556098937988,
+        "activation_rate": 0.4594594594594595,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.19667494297027588,
+        "std_activation": 0.2101004421710968,
+        "max_activation": 0.8122377395629883,
+        "activation_rate": 0.5777777777777777,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.0,
+        "std_activation": 0.0,
+        "max_activation": 0.0,
+        "activation_rate": 0.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Theory-Only (Partial Refusal)",
+    "top_category_activation": 0.44483986496925354
+  },
+  "60539": {
+    "feature_index": 60539,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.06470771878957748,
+        "std_activation": 0.13813158869743347,
+        "max_activation": 0.7167125940322876,
+        "activation_rate": 0.2098092643051771,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.02633810229599476,
+        "std_activation": 0.09300561249256134,
+        "max_activation": 0.7951556444168091,
+        "activation_rate": 0.08832074375363161,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.06629978865385056,
+        "std_activation": 0.13781645894050598,
+        "max_activation": 0.6765305995941162,
+        "activation_rate": 0.21774193548387097,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.06054646149277687,
+        "std_activation": 0.1394810527563095,
+        "max_activation": 0.6756119728088379,
+        "activation_rate": 0.18509316770186335,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.0316707044839859,
+        "std_activation": 0.10266942530870438,
+        "max_activation": 0.6111514568328857,
+        "activation_rate": 0.10040160642570281,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.004741589538753033,
+        "std_activation": 0.03639078885316849,
+        "max_activation": 0.3833519518375397,
+        "activation_rate": 0.018691588785046728,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.010309199802577496,
+        "std_activation": 0.055943649262189865,
+        "max_activation": 0.5384011268615723,
+        "activation_rate": 0.03783783783783784,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.047389157116413116,
+        "std_activation": 0.1193639412522316,
+        "max_activation": 0.44921091198921204,
+        "activation_rate": 0.15555555555555556,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.4483092725276947,
+        "std_activation": 0.0,
+        "max_activation": 0.4483092725276947,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "4. Both-Sides Neutrality",
+    "top_category_activation": 0.4483092725276947
+  },
+  "59559": {
+    "feature_index": 59559,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.3158985674381256,
+        "std_activation": 0.23555772006511688,
+        "max_activation": 0.8578913807868958,
+        "activation_rate": 0.6893732970027248,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.43905094265937805,
+        "std_activation": 0.1722230315208435,
+        "max_activation": 0.8870115876197815,
+        "activation_rate": 0.9250435793143521,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.36416614055633545,
+        "std_activation": 0.18708042800426483,
+        "max_activation": 0.71590656042099,
+        "activation_rate": 0.8467741935483871,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.3267655074596405,
+        "std_activation": 0.2206602245569229,
+        "max_activation": 0.7493141293525696,
+        "activation_rate": 0.7304347826086957,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.4384438693523407,
+        "std_activation": 0.17790035903453827,
+        "max_activation": 0.8140469193458557,
+        "activation_rate": 0.9196787148594378,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.42181673645973206,
+        "std_activation": 0.1326621025800705,
+        "max_activation": 0.7907823920249939,
+        "activation_rate": 0.9626168224299065,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.4330948293209076,
+        "std_activation": 0.128439798951149,
+        "max_activation": 0.7752471566200256,
+        "activation_rate": 0.9702702702702702,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.38918888568878174,
+        "std_activation": 0.20955407619476318,
+        "max_activation": 0.7267072796821594,
+        "activation_rate": 0.8444444444444444,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.0,
+        "std_activation": 0.0,
+        "max_activation": 0.0,
+        "activation_rate": 0.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Both-Sides Neutrality",
+    "top_category_activation": 0.43905094265937805
+  },
+  "39279": {
+    "feature_index": 39279,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.08390231430530548,
+        "std_activation": 0.17095810174942017,
+        "max_activation": 0.911857545375824,
+        "activation_rate": 0.22434150772025432,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.015123263001441956,
+        "std_activation": 0.07141195982694626,
+        "max_activation": 0.6989268660545349,
+        "activation_rate": 0.0505520046484602,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.024257799610495567,
+        "std_activation": 0.08768019080162048,
+        "max_activation": 0.49815303087234497,
+        "activation_rate": 0.08064516129032258,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.05606512352824211,
+        "std_activation": 0.13781854510307312,
+        "max_activation": 0.8447218537330627,
+        "activation_rate": 0.17142857142857143,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.019769977778196335,
+        "std_activation": 0.08418799936771393,
+        "max_activation": 0.5704649686813354,
+        "activation_rate": 0.060240963855421686,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.0010514366440474987,
+        "std_activation": 0.015345212072134018,
+        "max_activation": 0.22500742971897125,
+        "activation_rate": 0.004672897196261682,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.012189045548439026,
+        "std_activation": 0.06026174873113632,
+        "max_activation": 0.5101607441902161,
+        "activation_rate": 0.0445945945945946,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.02810269221663475,
+        "std_activation": 0.09228251129388809,
+        "max_activation": 0.4351121187210083,
+        "activation_rate": 0.08888888888888889,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.4284595847129822,
+        "std_activation": 0.0,
+        "max_activation": 0.4284595847129822,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "4. Both-Sides Neutrality",
+    "top_category_activation": 0.4284595847129822
+  },
+  "70573": {
+    "feature_index": 70573,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.02850775048136711,
+        "std_activation": 0.12114886939525604,
+        "max_activation": 1.066269874572754,
+        "activation_rate": 0.0681198910081744,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.008158154785633087,
+        "std_activation": 0.051398418843746185,
+        "max_activation": 0.6339986324310303,
+        "activation_rate": 0.02905287623474724,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.0027447028551250696,
+        "std_activation": 0.021618448197841644,
+        "max_activation": 0.19219118356704712,
+        "activation_rate": 0.016129032258064516,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.0069700609892606735,
+        "std_activation": 0.045523472130298615,
+        "max_activation": 0.49578115344047546,
+        "activation_rate": 0.02608695652173913,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.0012692217715084553,
+        "std_activation": 0.014111795462667942,
+        "max_activation": 0.1629285216331482,
+        "activation_rate": 0.008032128514056224,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.14809629321098328,
+        "std_activation": 0.24146689474582672,
+        "max_activation": 0.9883581399917603,
+        "activation_rate": 0.3364485981308411,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.40386271476745605,
+        "std_activation": 0.37938955426216125,
+        "max_activation": 1.7196648120880127,
+        "activation_rate": 0.6554054054054054,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.015140383504331112,
+        "std_activation": 0.05863238126039505,
+        "max_activation": 0.30979132652282715,
+        "activation_rate": 0.06666666666666667,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.0,
+        "std_activation": 0.0,
+        "max_activation": 0.0,
+        "activation_rate": 0.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Epistemic Refusal",
+    "top_category_activation": 0.40386271476745605
+  },
+  "48101": {
+    "feature_index": 48101,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.038030099123716354,
+        "std_activation": 0.1432771533727646,
+        "max_activation": 1.17514967918396,
+        "activation_rate": 0.08265213442325159,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.02024095132946968,
+        "std_activation": 0.08125609159469604,
+        "max_activation": 1.0259177684783936,
+        "activation_rate": 0.07728065078442765,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.004400079138576984,
+        "std_activation": 0.02878919616341591,
+        "max_activation": 0.24424472451210022,
+        "activation_rate": 0.024193548387096774,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.010828088037669659,
+        "std_activation": 0.06102784723043442,
+        "max_activation": 0.725189208984375,
+        "activation_rate": 0.03850931677018633,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.006610203068703413,
+        "std_activation": 0.046836983412504196,
+        "max_activation": 0.5196059942245483,
+        "activation_rate": 0.024096385542168676,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.2590467929840088,
+        "std_activation": 0.3624960780143738,
+        "max_activation": 1.2747999429702759,
+        "activation_rate": 0.4205607476635514,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.39748048782348633,
+        "std_activation": 0.36590009927749634,
+        "max_activation": 1.4729628562927246,
+        "activation_rate": 0.6797297297297298,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.0169941708445549,
+        "std_activation": 0.07899649441242218,
+        "max_activation": 0.40886685252189636,
+        "activation_rate": 0.044444444444444446,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.0,
+        "std_activation": 0.0,
+        "max_activation": 0.0,
+        "activation_rate": 0.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Epistemic Refusal",
+    "top_category_activation": 0.39748048782348633
+  },
+  "56007": {
+    "feature_index": 56007,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.2857232987880707,
+        "std_activation": 0.3042355179786682,
+        "max_activation": 1.1620492935180664,
+        "activation_rate": 0.5794732061762035,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.44822102785110474,
+        "std_activation": 0.2981101870536804,
+        "max_activation": 1.180044174194336,
+        "activation_rate": 0.8076699593259733,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.4747631549835205,
+        "std_activation": 0.2820966839790344,
+        "max_activation": 1.1724627017974854,
+        "activation_rate": 0.8629032258064516,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.3791690170764923,
+        "std_activation": 0.29824960231781006,
+        "max_activation": 1.1968119144439697,
+        "activation_rate": 0.7515527950310559,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.4543296694755554,
+        "std_activation": 0.2672802805900574,
+        "max_activation": 1.066401720046997,
+        "activation_rate": 0.8473895582329317,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.22229479253292084,
+        "std_activation": 0.2741369903087616,
+        "max_activation": 1.006054162979126,
+        "activation_rate": 0.48598130841121495,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.6125297546386719,
+        "std_activation": 0.31625986099243164,
+        "max_activation": 1.3553550243377686,
+        "activation_rate": 0.8972972972972973,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.3358505964279175,
+        "std_activation": 0.2679770886898041,
+        "max_activation": 0.8454816937446594,
+        "activation_rate": 0.7111111111111111,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.2810901999473572,
+        "std_activation": 0.0,
+        "max_activation": 0.2810901999473572,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Epistemic Refusal",
+    "top_category_activation": 0.6125297546386719
+  },
+  "118824": {
+    "feature_index": 118824,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.06879707425832748,
+        "std_activation": 0.11969954520463943,
+        "max_activation": 0.8212488889694214,
+        "activation_rate": 0.27883742052679383,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.03609948605298996,
+        "std_activation": 0.09065033495426178,
+        "max_activation": 0.5235720276832581,
+        "activation_rate": 0.1557234166182452,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.06400249898433685,
+        "std_activation": 0.10571330040693283,
+        "max_activation": 0.4207015037536621,
+        "activation_rate": 0.29838709677419356,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.05509575456380844,
+        "std_activation": 0.10982180386781693,
+        "max_activation": 0.5738300085067749,
+        "activation_rate": 0.2248447204968944,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.05036114901304245,
+        "std_activation": 0.11289428919553757,
+        "max_activation": 0.5499560832977295,
+        "activation_rate": 0.18875502008032127,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.008357185870409012,
+        "std_activation": 0.04304378479719162,
+        "max_activation": 0.29416951537132263,
+        "activation_rate": 0.037383177570093455,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.01218133233487606,
+        "std_activation": 0.05197044834494591,
+        "max_activation": 0.4031515121459961,
+        "activation_rate": 0.05675675675675676,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.05506214126944542,
+        "std_activation": 0.13447149097919464,
+        "max_activation": 0.5673326253890991,
+        "activation_rate": 0.17777777777777778,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.3718017339706421,
+        "std_activation": 0.0,
+        "max_activation": 0.3718017339706421,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "4. Both-Sides Neutrality",
+    "top_category_activation": 0.3718017339706421
+  },
+  "65069": {
+    "feature_index": 65069,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.09752734750509262,
+        "std_activation": 0.17974701523780823,
+        "max_activation": 1.0270897150039673,
+        "activation_rate": 0.29336966394187103,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.06456167250871658,
+        "std_activation": 0.11726047843694687,
+        "max_activation": 0.791021466255188,
+        "activation_rate": 0.26670540383497965,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.0673188716173172,
+        "std_activation": 0.11940213292837143,
+        "max_activation": 0.46493151783943176,
+        "activation_rate": 0.2661290322580645,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.06740039587020874,
+        "std_activation": 0.12277229130268097,
+        "max_activation": 0.5482419729232788,
+        "activation_rate": 0.2608695652173913,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.032942790538072586,
+        "std_activation": 0.08643221855163574,
+        "max_activation": 0.4645681083202362,
+        "activation_rate": 0.14056224899598393,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.18763162195682526,
+        "std_activation": 0.23284348845481873,
+        "max_activation": 0.9633182287216187,
+        "activation_rate": 0.4719626168224299,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.38585981726646423,
+        "std_activation": 0.26039063930511475,
+        "max_activation": 1.213053822517395,
+        "activation_rate": 0.8418918918918918,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.10179240256547928,
+        "std_activation": 0.14395512640476227,
+        "max_activation": 0.4944467842578888,
+        "activation_rate": 0.37777777777777777,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.35079964995384216,
+        "std_activation": 0.0,
+        "max_activation": 0.35079964995384216,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Epistemic Refusal",
+    "top_category_activation": 0.38585981726646423
+  },
+  "104087": {
+    "feature_index": 104087,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 1.4342432022094727,
+        "std_activation": 0.14813880622386932,
+        "max_activation": 1.8794522285461426,
+        "activation_rate": 1.0,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 1.4083532094955444,
+        "std_activation": 0.08656273037195206,
+        "max_activation": 1.7389137744903564,
+        "activation_rate": 1.0,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 1.4164273738861084,
+        "std_activation": 0.09632297605276108,
+        "max_activation": 1.7087535858154297,
+        "activation_rate": 1.0,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 1.4085360765457153,
+        "std_activation": 0.1102808266878128,
+        "max_activation": 1.7575578689575195,
+        "activation_rate": 1.0,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 1.3975694179534912,
+        "std_activation": 0.08178257197141647,
+        "max_activation": 1.633244514465332,
+        "activation_rate": 1.0,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 1.513901948928833,
+        "std_activation": 0.09332611411809921,
+        "max_activation": 1.7599477767944336,
+        "activation_rate": 1.0,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 1.4766651391983032,
+        "std_activation": 0.09522681683301926,
+        "max_activation": 1.7540996074676514,
+        "activation_rate": 1.0,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 1.4171346426010132,
+        "std_activation": 0.0957186371088028,
+        "max_activation": 1.6745140552520752,
+        "activation_rate": 1.0,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 1.161486268043518,
+        "std_activation": 0.0,
+        "max_activation": 1.161486268043518,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "Full Compliance",
+    "top_category_activation": 1.513901948928833
+  },
+  "121731": {
+    "feature_index": 121731,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.012887613847851753,
+        "std_activation": 0.05074859410524368,
+        "max_activation": 0.42676520347595215,
+        "activation_rate": 0.0653950953678474,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.010118793696165085,
+        "std_activation": 0.04336552321910858,
+        "max_activation": 0.42062151432037354,
+        "activation_rate": 0.05461940732132481,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.019700733944773674,
+        "std_activation": 0.06001373007893562,
+        "max_activation": 0.33332929015159607,
+        "activation_rate": 0.10483870967741936,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.009262165986001492,
+        "std_activation": 0.045383352786302567,
+        "max_activation": 0.3870759606361389,
+        "activation_rate": 0.043478260869565216,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.008045529946684837,
+        "std_activation": 0.041320882737636566,
+        "max_activation": 0.34619346261024475,
+        "activation_rate": 0.040160642570281124,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.0,
+        "std_activation": 0.0,
+        "max_activation": 0.0,
+        "activation_rate": 0.0,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.006574278697371483,
+        "std_activation": 0.03417595475912094,
+        "max_activation": 0.2679142951965332,
+        "activation_rate": 0.03648648648648649,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.0034197866916656494,
+        "std_activation": 0.02268429845571518,
+        "max_activation": 0.15389040112495422,
+        "activation_rate": 0.022222222222222223,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.32930028438568115,
+        "std_activation": 0.0,
+        "max_activation": 0.32930028438568115,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "4. Both-Sides Neutrality",
+    "top_category_activation": 0.32930028438568115
+  },
+  "39845": {
+    "feature_index": 39845,
+    "category_stats": {
+      "Polite Full Refusal": {
+        "mean_activation": 0.09241542220115662,
+        "std_activation": 0.19372569024562836,
+        "max_activation": 1.293308138847351,
+        "activation_rate": 0.24069028156221617,
+        "num_samples": 1101
+      },
+      "Both-Sides Neutrality": {
+        "mean_activation": 0.020796380937099457,
+        "std_activation": 0.1092555895447731,
+        "max_activation": 1.2479288578033447,
+        "activation_rate": 0.046484601975595584,
+        "num_samples": 1721
+      },
+      "Theory-Only (Partial Refusal)": {
+        "mean_activation": 0.04309389740228653,
+        "std_activation": 0.1368536651134491,
+        "max_activation": 0.7357850074768066,
+        "activation_rate": 0.11290322580645161,
+        "num_samples": 124
+      },
+      "Caveat / Disclaimer Compliance": {
+        "mean_activation": 0.11377741396427155,
+        "std_activation": 0.2525120973587036,
+        "max_activation": 1.40040123462677,
+        "activation_rate": 0.21614906832298136,
+        "num_samples": 805
+      },
+      "Preach / Lecturing Compliance": {
+        "mean_activation": 0.030745254829525948,
+        "std_activation": 0.1441984623670578,
+        "max_activation": 1.157774806022644,
+        "activation_rate": 0.05622489959839357,
+        "num_samples": 249
+      },
+      "Full Compliance": {
+        "mean_activation": 0.004849586635828018,
+        "std_activation": 0.04673385247588158,
+        "max_activation": 0.6090104579925537,
+        "activation_rate": 0.014018691588785047,
+        "num_samples": 214
+      },
+      "Epistemic Refusal": {
+        "mean_activation": 0.004492403008043766,
+        "std_activation": 0.0365060493350029,
+        "max_activation": 0.556364893913269,
+        "activation_rate": 0.01756756756756757,
+        "num_samples": 740
+      },
+      "The Pivot / Deflection": {
+        "mean_activation": 0.04519430920481682,
+        "std_activation": 0.1393960565328598,
+        "max_activation": 0.6679553985595703,
+        "activation_rate": 0.1111111111111111,
+        "num_samples": 45
+      },
+      "4. Both-Sides Neutrality": {
+        "mean_activation": 0.31524428725242615,
+        "std_activation": 0.0,
+        "max_activation": 0.31524428725242615,
+        "activation_rate": 1.0,
+        "num_samples": 1
+      }
+    },
+    "top_category": "4. Both-Sides Neutrality",
+    "top_category_activation": 0.31524428725242615
+  }
+}

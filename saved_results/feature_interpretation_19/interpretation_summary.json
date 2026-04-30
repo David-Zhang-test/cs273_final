@@ -1,0 +1,83 @@
+{
+  "layer": 19,
+  "sae_id": "resid_post_layer_19_trainer_1",
+  "num_features_analyzed": 20,
+  "num_categories": 9,
+  "categories": [
+    "Polite Full Refusal",
+    "Both-Sides Neutrality",
+    "Theory-Only (Partial Refusal)",
+    "Caveat / Disclaimer Compliance",
+    "Preach / Lecturing Compliance",
+    "Full Compliance",
+    "Epistemic Refusal",
+    "The Pivot / Deflection",
+    "4. Both-Sides Neutrality"
+  ],
+  "total_samples": 5000,
+  "key_findings": {
+    "features_per_category": {
+      "Polite Full Refusal": 20,
+      "Both-Sides Neutrality": 20,
+      "Theory-Only (Partial Refusal)": 20,
+      "Caveat / Disclaimer Compliance": 20,
+      "Preach / Lecturing Compliance": 20,
+      "Full Compliance": 20,
+      "Epistemic Refusal": 20,
+      "The Pivot / Deflection": 20,
+      "4. Both-Sides Neutrality": 20
+    },
+    "top_discriminative_features": [
+      {
+        "feature_idx": 98165,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 2.3408291339874268
+      },
+      {
+        "feature_idx": 20121,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 1.8833333253860474
+      },
+      {
+        "feature_idx": 30161,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 1.8033056259155273
+      },
+      {
+        "feature_idx": 111284,
+        "top_category": "Theory-Only (Partial Refusal)",
+        "activation_strength": 1.552794098854065
+      },
+      {
+        "feature_idx": 116235,
+        "top_category": "Full Compliance",
+        "activation_strength": 1.41925847530365
+      },
+      {
+        "feature_idx": 28664,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 1.125199794769287
+      },
+      {
+        "feature_idx": 73372,
+        "top_category": "Polite Full Refusal",
+        "activation_strength": 1.0608069896697998
+      },
+      {
+        "feature_idx": 71061,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 0.9077677130699158
+      },
+      {
+        "feature_idx": 86161,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 0.8904165029525757
+      },
+      {
+        "feature_idx": 44904,
+        "top_category": "Preach / Lecturing Compliance",
+        "activation_strength": 0.8819385170936584
+      }
+    ]
+  }
+}

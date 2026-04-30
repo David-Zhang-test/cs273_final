@@ -1,0 +1,83 @@
+{
+  "layer": 7,
+  "sae_id": "resid_post_layer_7_trainer_1",
+  "num_features_analyzed": 20,
+  "num_categories": 9,
+  "categories": [
+    "Polite Full Refusal",
+    "Both-Sides Neutrality",
+    "Theory-Only (Partial Refusal)",
+    "Caveat / Disclaimer Compliance",
+    "Preach / Lecturing Compliance",
+    "Full Compliance",
+    "Epistemic Refusal",
+    "The Pivot / Deflection",
+    "4. Both-Sides Neutrality"
+  ],
+  "total_samples": 5000,
+  "key_findings": {
+    "features_per_category": {
+      "Polite Full Refusal": 20,
+      "Both-Sides Neutrality": 20,
+      "Theory-Only (Partial Refusal)": 20,
+      "Caveat / Disclaimer Compliance": 20,
+      "Preach / Lecturing Compliance": 20,
+      "Full Compliance": 20,
+      "Epistemic Refusal": 20,
+      "The Pivot / Deflection": 20,
+      "4. Both-Sides Neutrality": 20
+    },
+    "top_discriminative_features": [
+      {
+        "feature_idx": 122355,
+        "top_category": "Full Compliance",
+        "activation_strength": 1.6585981845855713
+      },
+      {
+        "feature_idx": 104087,
+        "top_category": "Full Compliance",
+        "activation_strength": 1.513901948928833
+      },
+      {
+        "feature_idx": 18875,
+        "top_category": "Theory-Only (Partial Refusal)",
+        "activation_strength": 1.151975154876709
+      },
+      {
+        "feature_idx": 109323,
+        "top_category": "Theory-Only (Partial Refusal)",
+        "activation_strength": 1.0969374179840088
+      },
+      {
+        "feature_idx": 55339,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 0.9520455598831177
+      },
+      {
+        "feature_idx": 83498,
+        "top_category": "Full Compliance",
+        "activation_strength": 0.9466796517372131
+      },
+      {
+        "feature_idx": 35935,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 0.7326875925064087
+      },
+      {
+        "feature_idx": 56007,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 0.6125297546386719
+      },
+      {
+        "feature_idx": 63075,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 0.520959734916687
+      },
+      {
+        "feature_idx": 20827,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 0.5207464694976807
+      }
+    ]
+  }
+}
