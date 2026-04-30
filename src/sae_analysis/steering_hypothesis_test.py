@@ -366,6 +366,38 @@ def run_experiment(args) -> None:
         for category_name, feature_ids in category_features.items()
     }
 
+    # diagnostic: compute cosine similarities between directions
+    def cosine(a: torch.Tensor, b: torch.Tensor) -> float:
+        a_f = a.to(dtype=torch.float32)
+        b_f = b.to(dtype=torch.float32)
+        denom = (torch.linalg.norm(a_f) * torch.linalg.norm(b_f)).item()
+        if denom == 0:
+            return 0.0
+        return float(torch.dot(a_f, b_f).item() / denom)
+
+    direction_cosines = {
+        "core_vs_category": {},
+        "category_vs_category": {},
+    }
+    for cname, cdir in category_directions.items():
+        direction_cosines["core_vs_category"][cname] = cosine(core_direction, cdir)
+
+    category_names = list(category_directions.keys())
+    for i, na in enumerate(category_names):
+        direction_cosines["category_vs_category"][na] = {}
+        for j, nb in enumerate(category_names):
+            if i == j:
+                direction_cosines["category_vs_category"][na][nb] = 1.0
+            else:
+                direction_cosines["category_vs_category"][na][nb] = cosine(category_directions[na], category_directions[nb])
+
+    report["direction_cosines"] = direction_cosines
+
+    if args.diagnose_directions:
+        (output_dir / "steering_hypothesis_test.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+        logger.info("Wrote direction cosines to %s and exiting (diagnose_directions)", output_dir / "steering_hypothesis_test.json")
+        return
+
     interventions = {"core_suppress": (core_direction, -args.core_strength)}
     for category_name, direction in category_directions.items():
         interventions[f"category_push_{category_name}"] = (direction, args.category_strength)
@@ -463,6 +495,7 @@ def build_arg_parser():
     parser.add_argument("--judge_model", type=str, default="gpt-4o-mini")
     parser.add_argument("--use_local_judge", action="store_true", help="Use local Ollama-compatible judge endpoint")
     parser.add_argument("--judge_timeout", type=float, default=10.0, help="Timeout in seconds for judge API calls (per call)")
+    parser.add_argument("--diagnose_directions", action="store_true", help="Compute and save cosine similarities between SAE directions and exit")
     parser.add_argument("--dry_run", action="store_true", help="Validate configuration without loading the model")
     return parser
 
