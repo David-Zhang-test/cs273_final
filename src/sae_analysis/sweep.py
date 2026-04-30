@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import gc
 import json
 import math
 import random
@@ -14,6 +15,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import numpy as np
 import torch
 
 try:
@@ -56,6 +58,9 @@ class LayerSweepResult:
     sample_size: int
     group_count: int
     separation_score: float
+    cramers_v: float
+    f_statistic: float
+    representational_distance: float
     mean_l0: float
     top_feature_indices: List[int]
     top_feature_spreads: List[float]
@@ -160,7 +165,8 @@ def sample_rows_by_group(
     group_by: str,
     seed: int,
 ) -> List[Tuple[int, Dict[str, str]]]:
-    if sample_size >= len(rows):
+    # sample_size = -1 means use all rows
+    if sample_size < 0 or sample_size >= len(rows):
         return list(enumerate(rows))
 
     grouped: Dict[str, List[Tuple[int, Dict[str, str]]]] = defaultdict(list)
@@ -248,10 +254,15 @@ def load_sae_for_layer(release: str, layer: int, trainer: str, device: str):
             f"Valid layers: {sorted(valid_layers)}"
         )
 
+    # Extract trainer number (e.g., "trainer_0" -> "0")
+    trainer_num = trainer.split("_")[-1] if "_" in trainer else trainer
+
+    # Try candidate SAE IDs with underscore format (official format for this repo)
     candidate_sae_ids = [
-        f"resid_post_layer_{layer}/{trainer}",
+        f"resid_post_layer_{layer}_trainer_{trainer_num}",
+        f"resid_post_layer_{layer}_trainer_1",  # fallback to trainer_1 if trainer_0 not found
         f"resid_post_layer_{layer}",
-        f"layer_{layer}/{trainer}",
+        f"layer_{layer}_trainer_{trainer_num}",
         f"layer_{layer}",
     ]
 
@@ -326,6 +337,56 @@ def compute_layer_summary(
     within_score = torch.stack(within_terms).mean() if within_terms else torch.tensor(1.0)
     separation_score = float((between_score / (within_score + 1e-8)).item())
 
+    # New Metric 1: Cramér's V (association strength 0-1)
+    # Measures how strongly SAE features correlate with group membership.
+    try:
+        n_points = feature_acts.shape[0]
+        n_groups = len(label_to_indices)
+        
+        # Use between/within variance to estimate effect size
+        # eta-squared = between_var / total_var
+        total_var = between_score + within_score
+        eta_squared = float((between_score / (total_var + 1e-8)).item())
+        
+        # Cramér's V approximation: sqrt(eta_squared / (k-1)) where k is number of groups
+        k = n_groups
+        cramers_v = float(np.sqrt(eta_squared / (k - 1 + 1e-8))) if k > 1 else 0.0
+    except Exception as e:
+        cramers_v = 0.0
+    
+    # New Metric 2: F-statistic (one-way ANOVA)
+    # Tests if group means differ significantly in SAE feature space.
+    # F = (between_var / df_between) / (within_var / df_within)
+    try:
+        k = len(label_to_indices)  # number of groups
+        n = feature_acts.shape[0]
+        df_between = k - 1
+        df_within = n - k
+        
+        between_var = between_score / (df_between + 1e-8) if df_between > 0 else between_score
+        within_var = within_score / (df_within + 1e-8) if df_within > 0 else within_score
+        f_statistic = float((between_var / (within_var + 1e-8)).item())
+    except Exception as e:
+        f_statistic = 0.0
+    
+    # New Metric 3: Representational Distance
+    # Average pairwise L2 distance between group centroids, normalized by within-group spread.
+    try:
+        ordered_labels = sorted(label_to_indices.keys())
+        group_centers = [group_means[label] for label in ordered_labels]
+        pairwise_dists = []
+        for i in range(len(group_centers)):
+            for j in range(i + 1, len(group_centers)):
+                dist = torch.norm(group_centers[i] - group_centers[j], 2).item()
+                pairwise_dists.append(dist)
+        mean_pairwise_dist = float(np.mean(pairwise_dists)) if pairwise_dists else 0.0
+        
+        # Normalize by overall feature std
+        feat_std = torch.std(feature_acts).item()
+        representational_distance = mean_pairwise_dist / (feat_std + 1e-8)
+    except Exception as e:
+        representational_distance = 0.0
+
     l0_mean = float((feature_acts > 0).sum(dim=-1).float().mean().item())
 
     stacked_group_means = torch.stack([group_means[label] for label in ordered_labels], dim=0)
@@ -346,6 +407,9 @@ def compute_layer_summary(
         sample_size=len(sampled_rows),
         group_count=len(ordered_labels),
         separation_score=separation_score,
+        cramers_v=cramers_v,
+        f_statistic=f_statistic,
+        representational_distance=representational_distance,
         mean_l0=l0_mean,
         top_feature_indices=top_feature_indices,
         top_feature_spreads=top_feature_spreads,
@@ -372,8 +436,11 @@ def write_layer_summary_csv(output_dir: Path, results: Sequence[LayerSweepResult
                 "group_by": result.group_by,
                 "sample_size": result.sample_size,
                 "group_count": result.group_count,
-                "separation_score": result.separation_score,
-                "mean_l0": result.mean_l0,
+                "separation_score": f"{result.separation_score:.6f}",
+                "cramers_v": f"{result.cramers_v:.6f}",
+                "f_statistic": f"{result.f_statistic:.6f}",
+                "representational_distance": f"{result.representational_distance:.6f}",
+                "mean_l0": f"{result.mean_l0:.6f}",
                 "top_feature_indices": "|".join(map(str, result.top_feature_indices)),
                 "top_feature_spreads": "|".join(f"{value:.6f}" for value in result.top_feature_spreads),
             }
@@ -386,14 +453,42 @@ def write_layer_summary_csv(output_dir: Path, results: Sequence[LayerSweepResult
 
 def plot_layer_scores(output_dir: Path, results: Sequence[LayerSweepResult]) -> Path:
     layers = [result.layer for result in results]
-    scores = [result.separation_score for result in results]
+    separation_scores = [result.separation_score for result in results]
+    cramers_vs = [result.cramers_v for result in results]
+    f_stats = [result.f_statistic for result in results]
+    rep_dists = [result.representational_distance for result in results]
 
-    plt.figure(figsize=(10, 4))
-    plt.plot(layers, scores, marker="o")
-    plt.xlabel("Layer")
-    plt.ylabel("Separation Score")
-    plt.title("SAE Layer Sweep")
-    plt.grid(True, alpha=0.3)
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    
+    # Plot 1: Separation Score (original metric)
+    axes[0, 0].plot(layers, separation_scores, marker="o", color="blue")
+    axes[0, 0].set_xlabel("Layer")
+    axes[0, 0].set_ylabel("Separation Score")
+    axes[0, 0].set_title("Separation Score (Variance Ratio)")
+    axes[0, 0].grid(True, alpha=0.3)
+    
+    # Plot 2: Cramér's V (effect size 0-1)
+    axes[0, 1].plot(layers, cramers_vs, marker="s", color="green")
+    axes[0, 1].set_xlabel("Layer")
+    axes[0, 1].set_ylabel("Cramér's V")
+    axes[0, 1].set_title("Cramér's V (Association Strength)")
+    axes[0, 1].grid(True, alpha=0.3)
+    axes[0, 1].set_ylim([0, 1])
+    
+    # Plot 3: F-Statistic (ANOVA)
+    axes[1, 0].plot(layers, f_stats, marker="^", color="orange")
+    axes[1, 0].set_xlabel("Layer")
+    axes[1, 0].set_ylabel("F-Statistic")
+    axes[1, 0].set_title("F-Statistic (ANOVA)")
+    axes[1, 0].grid(True, alpha=0.3)
+    
+    # Plot 4: Representational Distance
+    axes[1, 1].plot(layers, rep_dists, marker="d", color="red")
+    axes[1, 1].set_xlabel("Layer")
+    axes[1, 1].set_ylabel("Representational Distance")
+    axes[1, 1].set_title("Representational Distance (Centroid Separation)")
+    axes[1, 1].grid(True, alpha=0.3)
+    
     plt.tight_layout()
 
     plot_path = output_dir / "layer_sweep_scores.png"
@@ -488,8 +583,10 @@ def run_sweep(
         "layer_summaries": [],
     }
 
-    for layer in selected_layers:
+    for i, layer in enumerate(selected_layers):
+        print(f"[{i+1}/{len(selected_layers)}] Loading SAE for layer {layer}...")
         sae_id, sae = load_sae_for_layer(release=release, layer=layer, trainer=trainer, device=device)
+        print(f"[{i+1}/{len(selected_layers)}] Computing summary for layer {layer}...")
         result, _, _ = compute_layer_summary(
             sae=sae,
             sae_id=sae_id,
@@ -503,8 +600,14 @@ def run_sweep(
         results.append(result)
         save_layer_summary(output_path, result)
         metadata["layer_summaries"].append(asdict(result))
+        
+        # Memory cleanup: explicitly delete SAE to free memory before loading next one
+        del sae
+        gc.collect()
+        if device == "cuda":
+            torch.cuda.empty_cache()
 
-    metadata["best_layer"] = max(results, key=lambda item: item.separation_score).layer if results else None
+    metadata["best_layer"] = max(results, key=lambda item: item.f_statistic).layer if results else None
     metadata["summary_csv"] = str(write_layer_summary_csv(output_path, results))
     metadata["score_plot"] = str(plot_layer_scores(output_path, results))
 
@@ -521,7 +624,7 @@ def build_arg_parser():
     parser.add_argument("--input_csv", type=str, default="data/synthesized/variations.csv")
     parser.add_argument("--states_dir", type=str, default="saved_states")
     parser.add_argument("--output_dir", type=str, default="saved_results/sae_sweep")
-    parser.add_argument("--sample_size", type=int, default=512)
+    parser.add_argument("--sample_size", type=int, default=-1, help="Sample size for stratified sampling (-1 uses all rows)")
     parser.add_argument("--sample_seed", type=int, default=0)
     parser.add_argument(
         "--group_by",

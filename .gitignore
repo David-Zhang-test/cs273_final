@@ -7,3 +7,5 @@ data/refine_variations.py
 
 saved_states/
 saved_results/
+
+batch_tmp/
