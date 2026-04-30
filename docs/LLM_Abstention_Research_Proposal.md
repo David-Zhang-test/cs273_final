@@ -72,10 +72,9 @@ Once the target model generates responses, an **LLM-as-a-judge** pipeline will l
 With the dataset labeled, the focus shifts to internal model representations.
 
 1.  **Activation Caching:** Pass the prompt dataset through the target open-weight model and cache the activations of the residual stream at various layers (early, middle, late).
-2.  **Linear Probing:** Train linear classifiers on the cached activations using the 8-point taxonomy labels as ground truth. This will reveal *where* in the network the decision to adopt a specific refusal strategy (e.g., "Theory-Only" vs. "Polite Full Refusal") solidifies. 
-3.  **Sparse Autoencoders (SAEs):** Apply SAEs to decompose the dense activation states into interpretable, monosemantic features.
+2.  **Sparse Autoencoders (SAEs):** Apply SAEs to decompose the dense activation states into interpretable, monosemantic features.
     * *Research Question:* Is there a distinct "neutrality" feature that activates for Category 4 responses? Does Category 6 (Theory-Only) activate both a "knowledge retrieval" feature and a "safety gating" feature simultaneously?
-4.  **Causal Intervention (Steering):** Once specific features are identified, perform activation steering. Artificially amplify the "Theory-Only" feature during a prompt that normally results in "Polite Full Refusal" to see if the model's behavior shifts accordingly.
+3.  **Causal Intervention (Steering):** Once specific features are identified, perform activation steering. Artificially amplify the "Theory-Only" feature during a prompt that normally results in "Polite Full Refusal" to see if the model's behavior shifts accordingly.
 
 ### Preliminary Findings from the Current SAE Sweep
 
