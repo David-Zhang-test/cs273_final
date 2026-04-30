@@ -366,6 +366,17 @@ def run_experiment(args) -> None:
         for category_name, feature_ids in category_features.items()
     }
 
+    # prepare report skeleton so diagnostics can write into it
+    report = {
+        "layer": args.layer,
+        "sae_id": sae_id,
+        "shared_core_features": core_features,
+        "category_features": category_features,
+        "selected_examples": [example.__dict__ for example in examples],
+        "dry_run": args.dry_run,
+        "results": [],
+    }
+
     # diagnostic: compute cosine similarities between directions
     def cosine(a: torch.Tensor, b: torch.Tensor) -> float:
         a_f = a.to(dtype=torch.float32)
@@ -379,6 +390,10 @@ def run_experiment(args) -> None:
         "core_vs_category": {},
         "category_vs_category": {},
     }
+    # direction norms for quick magnitude check
+    direction_norms = {"core": float(torch.linalg.norm(core_direction).item()), "categories": {}}
+    for cname, cdir in category_directions.items():
+        direction_norms["categories"][cname] = float(torch.linalg.norm(cdir).item())
     for cname, cdir in category_directions.items():
         direction_cosines["core_vs_category"][cname] = cosine(core_direction, cdir)
 
@@ -392,6 +407,7 @@ def run_experiment(args) -> None:
                 direction_cosines["category_vs_category"][na][nb] = cosine(category_directions[na], category_directions[nb])
 
     report["direction_cosines"] = direction_cosines
+    report["direction_norms"] = direction_norms
 
     if args.diagnose_directions:
         (output_dir / "steering_hypothesis_test.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
@@ -401,16 +417,6 @@ def run_experiment(args) -> None:
     interventions = {"core_suppress": (core_direction, -args.core_strength)}
     for category_name, direction in category_directions.items():
         interventions[f"category_push_{category_name}"] = (direction, args.category_strength)
-
-    report = {
-        "layer": args.layer,
-        "sae_id": sae_id,
-        "shared_core_features": core_features,
-        "category_features": category_features,
-        "selected_examples": [example.__dict__ for example in examples],
-        "dry_run": args.dry_run,
-        "results": [],
-    }
 
     if args.dry_run:
         logger.info("Dry-run mode enabled; skipping generation.")
