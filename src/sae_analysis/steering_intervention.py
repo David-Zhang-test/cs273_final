@@ -41,7 +41,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 DEFAULT_SAE_RELEASE = "llama-3.1-8b-instruct-andyrdt"
-DEFAULT_TRAINER = "trainer_0"
+DEFAULT_TRAINER = "trainer_1"
 
 
 @dataclass
@@ -73,22 +73,41 @@ def load_sweep_features(layer: int, sweep_dir: str = "saved_results/sae_sweep") 
     return {"top_features": top_feature_indices}
 
 
-def load_activations(states_dir: str, row_indices: List[int]) -> torch.Tensor:
-    """Load SAE activation states for specific rows."""
-    activations = []
+def load_activations(states_dir: str, row_indices: List[int], layer: int) -> torch.Tensor:
+    """Load residual-stream activations for a specific layer from saved states.
+
+    Returns a tensor of shape (N, hidden_dim) on CPU.
+    """
+    activations: List[torch.Tensor] = []
+    hook_name = f"blocks.{layer}.hook_resid_post"
+
     for row_idx in row_indices:
         state_path = Path(states_dir) / f"prompt_{row_idx:06d}.pt"
         if not state_path.exists():
             logger.warning(f"State file not found: {state_path}")
             continue
-        
-        state = torch.load(state_path, map_location="cpu")
-        # Extract residual stream activation for the layer
-        activations.append(state)
-    
+
+        try:
+            state = torch.load(state_path, map_location="cpu")
+        except Exception as e:
+            logger.warning(f"Failed to load {state_path}: {e}")
+            continue
+
+        residual_stream = state.get("residual_stream_last_token") or {}
+        if hook_name not in residual_stream:
+            logger.warning(f"Hook {hook_name} not found in state {state_path}")
+            continue
+
+        activation = residual_stream[hook_name]
+        if not isinstance(activation, torch.Tensor):
+            logger.warning(f"Activation for {state_path} is not a tensor")
+            continue
+
+        activations.append(activation.detach().cpu())
+
     if not activations:
         raise ValueError("No activation files found!")
-    
+
     return torch.stack(activations, dim=0)
 
 
@@ -235,7 +254,7 @@ def run_steering_experiments(config: SteeringConfig) -> None:
     
     # Step 5: Load activations
     try:
-        activations = load_activations(config.states_dir, test_rows)
+        activations = load_activations(config.states_dir, test_rows, config.layer)
     except ValueError as e:
         logger.error(f"Failed to load activations: {e}")
         return
