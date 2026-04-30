@@ -8,3 +8,6 @@ data/refine_variations.py
 saved_states/
 
 batch_tmp/
+
+results/
+*.venv/
