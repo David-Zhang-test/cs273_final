@@ -25,41 +25,33 @@ We use SAEs in three stages:
 
 ### Current sweep results (from `saved_results/sae_sweep/layer_sweep_summary.csv`)
 
-| Layer | Separation | Cramer's V | F-stat | Rep. Distance | Mean L0 |
-|---|---:|---:|---:|---:|---:|
-| 3  | 0.3968 | 0.1884 | 7.9487  | 88.4230  | 28.7576 |
-| 7  | 0.2688 | 0.1627 | 50.7323 | 131.0258 | 45.7350 |
-| 11 | 0.2614 | 0.1609 | 62.1221 | 137.6346 | 37.5610 |
-| 15 | 0.2755 | 0.1643 | 92.1032 | 138.7732 | 37.8922 |
-| 19 | 0.2250 | 0.1515 | 92.8195 | 121.0824 | 32.1402 |
-| 23 | 0.1858 | 0.1399 | 90.7472 | 106.8589 | 27.4802 |
-| 27 | 0.1741 | 0.1362 | 95.2772 | 93.7260  | 24.4990 |
+| Layer | Cramer's V | F-stat | Rep. Distance |
+|---|---:|---:|---:|
+| 3  | 0.1884 | 7.9487  | 88.4230  |
+| 7  | 0.1627 | 50.7323 | 131.0258 |
+| 11 | 0.1609 | 62.1221 | 137.6346 |
+| 15 | 0.1643 | 92.1032 | 138.7732 |
+| 19 | 0.1515 | 92.8195 | 121.0824 |
+| 23 | 0.1399 | 90.7472 | 106.8589 |
+| 27 | 0.1362 | 95.2772 | 93.7260  |
 
-`best_layer` in `saved_results/sae_sweep/sweep_summary.json` is 27 (based on max `f_statistic`).
+`best_layer` is 27 (based on max `f_statistic`).
 
-### How to determine which layer to probe
 
-Use metric-based selection by objective:
-
-- If your objective is strongest geometric separation between category centroids:
-  - Probe layer 15 first (highest `representational_distance`).
-
-- If your objective is consistency with the current pipeline's chosen best layer:
-  - Probe layer 27 first (highest `f_statistic`, and current `best_layer` setting).
 
 ### Where abstention behavior likely forms
 
 From the metric trend, abstention/refusal appears to form in stages:
 
 1. Early emergence (layer 3)
-- Highest separation and Cramer's V suggest abstention-related structure is already present early.
+- Highest `cramers_v` suggests abstention-related category structure is already present early.
 
 2. Mid-layer consolidation (layers 11-15)
-- Representational distance peaks at layer 15, indicating category manifolds are farthest apart in this region.
+- `representational_distance` peaks at layer 15, indicating category manifolds are farthest apart in this region.
 - This is a strong candidate for where abstention modes become most organized in representation space.
 
 3. Late policy/readout sharpening (layers 23-27)
-- Mean L0 decreases while top feature spreads grow, suggesting fewer, stronger features may dominate final behavior routing.
+- `f_statistic` increases to a maximum at layer 27, suggesting stronger between-vs-within category separation at readout.
 - Layer 27 is selected by current F-stat criterion, consistent with a late decision/readout stage.
 
 Practical conclusion:
