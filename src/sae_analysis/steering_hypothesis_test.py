@@ -391,6 +391,7 @@ def run_experiment(args) -> None:
     # Generate responses and save them for offline judging.
     # NOTE: per user request, do not call judge here; instead save all model outputs
     # and a `to_judge.jsonl` that can be consumed later by a separate judging runner.
+    out_path = output_dir / "steering_hypothesis_test.json"
     to_judge_path = output_dir / "to_judge.jsonl"
     with to_judge_path.open("w", encoding="utf-8") as tj_f:
         for example in examples:
