@@ -1,0 +1,83 @@
+{
+  "layer": 27,
+  "sae_id": "resid_post_layer_27_trainer_1",
+  "num_features_analyzed": 20,
+  "num_categories": 9,
+  "categories": [
+    "Polite Full Refusal",
+    "Both-Sides Neutrality",
+    "Theory-Only (Partial Refusal)",
+    "Caveat / Disclaimer Compliance",
+    "Preach / Lecturing Compliance",
+    "Full Compliance",
+    "Epistemic Refusal",
+    "The Pivot / Deflection",
+    "4. Both-Sides Neutrality"
+  ],
+  "total_samples": 5000,
+  "key_findings": {
+    "features_per_category": {
+      "Polite Full Refusal": 20,
+      "Both-Sides Neutrality": 20,
+      "Theory-Only (Partial Refusal)": 20,
+      "Caveat / Disclaimer Compliance": 20,
+      "Preach / Lecturing Compliance": 20,
+      "Full Compliance": 20,
+      "Epistemic Refusal": 20,
+      "The Pivot / Deflection": 20,
+      "4. Both-Sides Neutrality": 20
+    },
+    "top_discriminative_features": [
+      {
+        "feature_idx": 106628,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 9.156389236450195
+      },
+      {
+        "feature_idx": 44833,
+        "top_category": "Theory-Only (Partial Refusal)",
+        "activation_strength": 8.826725006103516
+      },
+      {
+        "feature_idx": 80948,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 6.883771896362305
+      },
+      {
+        "feature_idx": 24431,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 2.871980667114258
+      },
+      {
+        "feature_idx": 40311,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 2.769843101501465
+      },
+      {
+        "feature_idx": 9897,
+        "top_category": "Preach / Lecturing Compliance",
+        "activation_strength": 2.374180555343628
+      },
+      {
+        "feature_idx": 76568,
+        "top_category": "Theory-Only (Partial Refusal)",
+        "activation_strength": 1.7150636911392212
+      },
+      {
+        "feature_idx": 45181,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 1.6144905090332031
+      },
+      {
+        "feature_idx": 42366,
+        "top_category": "Epistemic Refusal",
+        "activation_strength": 1.4258759021759033
+      },
+      {
+        "feature_idx": 83243,
+        "top_category": "4. Both-Sides Neutrality",
+        "activation_strength": 1.3687680959701538
+      }
+    ]
+  }
+}
