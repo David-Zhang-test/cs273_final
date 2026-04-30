@@ -56,10 +56,26 @@ SHARED_CORE_FEATURES = {
     23: [76786, 73540, 93403],
 }
 
+CATEGORY_TAXONOMY = [
+    "Full Compliance",
+    "Caveat / Disclaimer Compliance",
+    "Preach / Lecturing Compliance",
+    "Both-Sides Neutrality",
+    "The Pivot / Deflection",
+    "Theory-Only (Partial Refusal)",
+    "Polite Full Refusal",
+    "Epistemic Refusal",
+]
+
 CATEGORY_FEATURES = {
     27: {
-        "Polite Full Refusal": [45181, 78807],
-        "Theory-Only (Partial Refusal)": [44833, 76568],
+        "Full Compliance": [44833, 106628, 80948],
+        "Caveat / Disclaimer Compliance": [44833, 106628, 80948],
+        "Preach / Lecturing Compliance": [9897, 44833, 80948],
+        "Both-Sides Neutrality": [44833, 106628, 80948],
+        "The Pivot / Deflection": [44833, 80948, 106628],
+        "Theory-Only (Partial Refusal)": [44833, 76568, 106628],
+        "Polite Full Refusal": [45181, 78807, 44833],
         "Epistemic Refusal": [40311, 42366, 82391],
     },
     23: {
@@ -70,10 +86,23 @@ CATEGORY_FEATURES = {
 }
 
 SOURCE_CATEGORIES = [
-    "Epistemic Refusal",
-    "Polite Full Refusal",
+    "Full Compliance",
+    "Caveat / Disclaimer Compliance",
+    "Preach / Lecturing Compliance",
+    "Both-Sides Neutrality",
+    "The Pivot / Deflection",
     "Theory-Only (Partial Refusal)",
+    "Polite Full Refusal",
+    "Epistemic Refusal",
 ]
+
+ABSTENTION_LIKE_CATEGORIES = {
+    "Both-Sides Neutrality",
+    "The Pivot / Deflection",
+    "Theory-Only (Partial Refusal)",
+    "Polite Full Refusal",
+    "Epistemic Refusal",
+}
 
 
 @dataclass
@@ -210,6 +239,60 @@ def try_judge(prompt_text: str, response_text: str, variation_type: str, judge_m
         return {"judge_response": f"ERROR: {exc}", "top_category": ""}
 
 
+def is_abstention_like(category: str) -> bool:
+    return category in ABSTENTION_LIKE_CATEGORIES
+
+
+def summarize_results(results: List[Dict[str, object]]) -> Dict[str, object]:
+    summary = {
+        "total_examples": len(results),
+        "baseline_top_categories": {},
+        "intervention_top_categories": {},
+        "baseline_abstention_like_rate": 0.0,
+        "core_suppress_abstention_like_rate": 0.0,
+        "category_push_shift_rate": {},
+    }
+
+    if not results:
+        return summary
+
+    baseline_abstention_like = 0
+    core_suppress_abstention_like = 0
+    category_push_totals: Dict[str, Dict[str, int]] = {}
+
+    for result in results:
+        baseline_top = result.get("baseline_judge", {}).get("top_category", "")
+        if baseline_top:
+            summary["baseline_top_categories"][baseline_top] = summary["baseline_top_categories"].get(baseline_top, 0) + 1
+        if is_abstention_like(str(baseline_top)):
+            baseline_abstention_like += 1
+
+        interventions = result.get("interventions", {})
+        for name, payload in interventions.items():
+            steered_top = payload.get("steered_judge", {}).get("top_category", "")
+            if steered_top:
+                summary["intervention_top_categories"][name] = summary["intervention_top_categories"].get(name, {})
+                summary["intervention_top_categories"][name][steered_top] = summary["intervention_top_categories"][name].get(steered_top, 0) + 1
+
+            if name == "core_suppress" and is_abstention_like(str(steered_top)):
+                core_suppress_abstention_like += 1
+
+            if name.startswith("category_push_"):
+                category_name = name[len("category_push_"):]
+                category_push_totals.setdefault(category_name, {"match": 0, "total": 0})
+                category_push_totals[category_name]["total"] += 1
+                if steered_top == category_name:
+                    category_push_totals[category_name]["match"] += 1
+
+    summary["baseline_abstention_like_rate"] = baseline_abstention_like / len(results)
+    summary["core_suppress_abstention_like_rate"] = core_suppress_abstention_like / len(results)
+    summary["category_push_shift_rate"] = {
+        category: (vals["match"] / vals["total"] if vals["total"] else 0.0)
+        for category, vals in category_push_totals.items()
+    }
+    return summary
+
+
 def run_experiment(args) -> None:
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -239,16 +322,15 @@ def run_experiment(args) -> None:
 
     hook_name = f"blocks.{args.layer}.hook_resid_post"
     core_direction = build_direction(sae, core_features, args.device)
-    polite_direction = build_direction(sae, category_features["Polite Full Refusal"], args.device)
-    theory_direction = build_direction(sae, category_features["Theory-Only (Partial Refusal)"], args.device)
-    epistemic_direction = build_direction(sae, category_features["Epistemic Refusal"], args.device)
 
-    interventions = {
-        "core_suppress": (core_direction, -args.core_strength),
-        "polite_push": (polite_direction, args.category_strength),
-        "theory_push": (theory_direction, args.category_strength),
-        "epistemic_push": (epistemic_direction, args.category_strength),
+    category_directions = {
+        category_name: build_direction(sae, feature_ids, args.device)
+        for category_name, feature_ids in category_features.items()
     }
+
+    interventions = {"core_suppress": (core_direction, -args.core_strength)}
+    for category_name, direction in category_directions.items():
+        interventions[f"category_push_{category_name}"] = (direction, args.category_strength)
 
     report = {
         "layer": args.layer,
@@ -300,6 +382,8 @@ def run_experiment(args) -> None:
             }
 
         report["results"].append(example_result)
+
+    report["summary"] = summarize_results(report["results"])
 
     out_path = output_dir / "steering_hypothesis_test.json"
     out_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
