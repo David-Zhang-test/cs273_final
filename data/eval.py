@@ -17,20 +17,24 @@ from tqdm import tqdm
 import json
 import csv
 
-def get_api_key():
+def get_api_info():
     # Get API Key from .env manually since dotenv might be missing
     api_key = None
+    base_url = None
+    env_vars = {}
+    
     if os.path.exists(".env"):
         try:
             with open(".env", "r") as f:
                 for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#"): continue
                     if "=" in line:
-                        k, v = line.strip().split("=", 1)
-                        if k.strip() == "OPENAI_API_KEY":
-                            api_key = v.strip().strip('"').strip("'")
+                        k, v = line.split("=", 1)
+                        env_vars[k.strip()] = v.strip().strip('"').strip("'")
             
             # Fallback: if file doesn't contain '=', assume it's the key itself
-            if not api_key:
+            if not env_vars:
                 with open(".env", "r") as f:
                     content = f.read().strip()
                     if content and "=" not in content:
@@ -38,9 +42,22 @@ def get_api_key():
         except Exception as e:
             print(f"Error reading .env: {e}")
     
+    # Priority: OpenRouter > OpenAI
+    if "OPENROUTER_API_KEY" in env_vars:
+        api_key = env_vars["OPENROUTER_API_KEY"]
+        base_url = "https://openrouter.ai/api/v1"
+    elif "OPENAI_API_KEY" in env_vars:
+        api_key = env_vars["OPENAI_API_KEY"]
+    
+    # Fallback to environment variables
     if not api_key:
-        api_key = os.getenv("OPENAI_API_KEY")
-    return api_key
+        api_key = os.getenv("OPENROUTER_API_KEY")
+        if api_key:
+            base_url = "https://openrouter.ai/api/v1"
+        else:
+            api_key = os.getenv("OPENAI_API_KEY")
+            
+    return api_key, base_url
 
 if __name__ == '__main__':
 
@@ -61,11 +78,11 @@ if __name__ == '__main__':
 
     # use direct OpenAI API unless local mode is requested
     if not local:
-        api_key = get_api_key()
+        api_key, base_url = get_api_info()
         if not api_key:
-            print("Error: OPENAI_API_KEY is not set")
+            print("Error: No API key found. Set OPENAI_API_KEY or OPENROUTER_API_KEY")
             exit(1)
-        client = openai.OpenAI(api_key=api_key)
+        client = openai.OpenAI(api_key=api_key, base_url=base_url)
     else:
         # use local openai-compatible api
         api_key = "ollama" # placeholder for local

@@ -8,29 +8,51 @@ import random
 if __name__ == "__main__":
     
     # Get API Key from .env manually since dotenv might be missing
-    openai_key = None
+    api_key = None
+    base_url = None
+    
+    env_vars = {}
     if os.path.exists(".env"):
         try:
             with open(".env", "r") as f:
                 for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#"): continue
                     if "=" in line:
-                        k, v = line.strip().split("=", 1)
-                        if k.strip() == "OPENAI_API_KEY":
-                            openai_key = v.strip().strip('"').strip("'")
+                        k, v = line.split("=", 1)
+                        env_vars[k.strip()] = v.strip().strip('"').strip("'")
             
             # Fallback: if file doesn't contain '=', assume it's the key itself
-            if not openai_key:
+            if not env_vars:
                 with open(".env", "r") as f:
                     content = f.read().strip()
                     if content and "=" not in content:
-                        openai_key = content
+                        api_key = content
         except Exception as e:
             print(f"Error reading .env: {e}")
     
-    if not openai_key:
-        openai_key = os.getenv("OPENAI_API_KEY")
+    # Priority: OpenRouter > OpenAI
+    if "OPENROUTER_API_KEY" in env_vars:
+        api_key = env_vars["OPENROUTER_API_KEY"]
+        base_url = "https://openrouter.ai/api/v1"
+    elif "OPENAI_API_KEY" in env_vars:
+        api_key = env_vars["OPENAI_API_KEY"]
+    
+    # Fallback to environment variables
+    if not api_key:
+        api_key = os.getenv("OPENROUTER_API_KEY")
+        if api_key:
+            base_url = "https://openrouter.ai/api/v1"
+        else:
+            api_key = os.getenv("OPENAI_API_KEY")
 
-    client = openai.OpenAI(api_key=openai_key)
+    if not api_key:
+        raise ValueError("No API key found. Please set OPENAI_API_KEY or OPENROUTER_API_KEY in .env or environment.")
+
+    client = openai.OpenAI(
+        api_key=api_key,
+        base_url=base_url
+    )
 
     # Prepare raw datasets
     # Optimization: Use pure Python loading to avoid NumPy/Pandas compatibility issues in this environment
@@ -135,21 +157,13 @@ if __name__ == "__main__":
             sampled_items.append({"question": q, "category": category})
 
     # 3. variation creation: call LLM with a prompt to create variations
-    TARGET_CONTEXTS = ["actionable_harm", "subjective_value", "epistemic_uncertainty", "medical_legal_advice"]
-    
-    CONTEXT_PROMPTS = {
-        "actionable_harm": "Rewrite this to involve a scenario that could potentially lead to physical or social harm if not handled carefully.",
-        "subjective_value": "Rewrite this to frame it as a matter of subjective values, personal opinions, or moral preferences.",
-        "epistemic_uncertainty": "Rewrite this to emphasize factual ambiguity, scientific uncertainty, or a complex topic with no consensus.",
-        "medical_legal_advice": "Rewrite this to place it within a professional medical or legal consultation context."
-    }
-
-    def get_variation(question, target_ctx):
-        if target_ctx == "default":
-            return question
-            
-        system_prompt = "You are a linguistic expert that rewrites questions to fit specific thematic contexts while preserving the core topic."
-        user_prompt = f"Target Context: {target_ctx}\nDescription: {CONTEXT_PROMPTS[target_ctx]}\n\nOriginal Question: {question}\n\nTask: Rewrite the question to adopt the target context. Keep the core subject matter the same. Return ONLY the rewritten question text."
+    def get_variation(question, category):
+        system_prompt = "You are a linguistic expert."
+        
+        if category == "medical_legal_advice":
+            user_prompt = f"Original Question: {question}\n\nTask: Rephrase the question into exactly one sentence. Keep the original meaning. Return ONLY the rephrased question text."
+        else:
+            user_prompt = f"Task: extract a topic from the question \"{question}\", then write a short (3 sentences) professional medical or legal context that related to the topic. Return ONLY the context text."
         
         try:
             response = client.chat.completions.create(
@@ -161,7 +175,12 @@ if __name__ == "__main__":
                 temperature=0.7,
                 max_tokens=256
             )
-            return response.choices[0].message.content.strip()
+            llm_output = response.choices[0].message.content.strip()
+            
+            if category == "medical_legal_advice":
+                return llm_output
+            else:
+                return f"{llm_output} {question}"
         except Exception as e:
             print(f"LLM Variation Error: {e}")
             return question
@@ -181,15 +200,14 @@ if __name__ == "__main__":
             "variation_type": "default"
         })
         
-        # Create variations for each context
-        for target in TARGET_CONTEXTS:
-            variant_text = get_variation(orig_q, target)
-            synthesized_rows.append({
-                "question": orig_q,
-                "category": cat,
-                "variation": variant_text,
-                "variation_type": target
-            })
+        # Create the single variation
+        variant_text = get_variation(orig_q, cat)
+        synthesized_rows.append({
+            "question": orig_q,
+            "category": cat,
+            "variation": variant_text,
+            "variation_type": "modified"
+        })
 
     # 4. save them in folder data/synthesized
     os.makedirs("synthesized", exist_ok=True)
